@@ -1,0 +1,14 @@
+{
+  "name": "weigo-plateforme-wei",
+  "version": "1.0.0",
+  "description": "WEIGO • La plateforme qui organise ton WEI",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.15",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

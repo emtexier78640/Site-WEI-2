@@ -1,0 +1,76 @@
+{
+  "emtexier": [
+    {
+      "id": "c-welcome-1",
+      "author": "BDE MMI Wave (Orga WEI)",
+      "role": "orga",
+      "date": "Message officiel",
+      "text": "Bonjour ! Tes informations du formulaire ont bien été synchronisées avec ton espace participant. Tu peux nous poser tes questions ou nous laisser une note ici."
+    },
+    {
+      "id": "c-1788808402424",
+      "author": "Emma Texier",
+      "role": "student",
+      "date": "07 sept., 21:13",
+      "text": "Bonjour le BDE, est-ce que les draps sont fournis dans le mobil-home ?"
+    },
+    {
+      "id": "c-1788808576822",
+      "author": "Emma Texier",
+      "role": "student",
+      "date": "07 sept., 21:16",
+      "text": "Super hate d'etre au WEI !"
+    },
+    {
+      "id": "c-1788809658463",
+      "author": "BDE MMI Wave (Orga WEI)",
+      "role": "orga",
+      "date": "07 sept., 21:34",
+      "text": "✅ Ton dossier est bien validé ! Rendez-vous vendredi devant les cars."
+    },
+    {
+      "id": "c-1788809686781",
+      "author": "BDE MMI Wave (Orga WEI)",
+      "role": "orga",
+      "date": "07 sept., 21:34",
+      "text": "Message officiel du BDE pour confirmation"
+    },
+    {
+      "id": "c-1788809897781",
+      "author": "Emma Texier",
+      "role": "student",
+      "date": "07 sept., 21:38",
+      "text": "Merci pour la confirmation !"
+    },
+    {
+      "id": "c-1788809985602",
+      "author": "BDE MMI Wave (Orga WEI)",
+      "role": "orga",
+      "date": "07 sept., 21:39",
+      "text": "✅ Ton dossier est bien validé ! Rendez-vous vendredi devant les cars."
+    },
+    {
+      "id": "c-1788809987701",
+      "author": "BDE MMI Wave (Orga WEI)",
+      "role": "orga",
+      "date": "07 sept., 21:39",
+      "text": "⚠️ N'oublie pas de déposer ta décharge de responsabilité signée."
+    }
+  ],
+  "étudiant": [
+    {
+      "id": "c-welcome-1",
+      "author": "BDE MMI Wave (Orga WEI)",
+      "role": "orga",
+      "date": "Message officiel",
+      "text": "Bonjour ! Tes informations du formulaire ont bien été synchronisées avec ton espace participant. Tu peux nous poser tes questions ou nous laisser une note ici."
+    },
+    {
+      "id": "c-1788808745933",
+      "author": "Étudiant",
+      "role": "student",
+      "date": "07 sept., 21:19",
+      "text": "Hello"
+    }
+  ]
+}
