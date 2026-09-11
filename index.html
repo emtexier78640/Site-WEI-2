@@ -148,6 +148,16 @@
 
                 </div>
 
+                <!-- RAPPEL CARTE D'IDENTITE - Hero -->
+                <div class="mt-5 max-w-2xl mx-auto flex items-center gap-4 bg-amber-50 border-2 border-amber-400 rounded-2xl px-5 py-4 shadow-sm">
+                    <span class="text-3xl flex-shrink-0">🪪</span>
+                    <div class="flex-1 text-left">
+                        <p class="font-black text-amber-900 text-sm sm:text-base">N'oublie pas ta pièce d'identité !</p>
+                        <p class="text-amber-700 text-xs font-medium">CNI ou passeport <strong>obligatoire</strong> pour partir — sans elle, tu restes à quai.</p>
+                    </div>
+                    <span class="flex-shrink-0 bg-amber-400 text-amber-900 text-[10px] font-black uppercase tracking-wider px-2.5 py-1.5 rounded-xl">⚠️ Obligatoire</span>
+                </div>
+
             </div>
         </section>
 
@@ -830,6 +840,19 @@
                 </button>
             </div>
 
+            <!-- RAPPEL CARTE D'IDENTITE - Infos Pratiques -->
+            <div class="flex items-center gap-4 bg-amber-50 border-2 border-amber-400 rounded-2xl px-5 py-4 shadow-sm mb-6">
+                <span class="text-4xl flex-shrink-0">🪪</span>
+                <div class="flex-1">
+                    <p class="font-black text-amber-900 text-base sm:text-lg">N'oublie pas ta pièce d'identité !</p>
+                    <p class="text-amber-700 text-xs sm:text-sm font-medium">CNI ou passeport <strong>obligatoire</strong> pour monter dans le bus. Sans elle, impossible de partir — même si tu as tout payé.</p>
+                </div>
+                <span class="flex-shrink-0 bg-amber-400 text-amber-900 text-xs font-black uppercase tracking-wide px-3 py-2 rounded-xl">⚠️ Obligatoire</span>
+            </div>
+
+            <div class="hidden"><!-- spacer replaced -->
+            </div>
+
             <!-- Categories Tabs / Accordions -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
                 
@@ -910,14 +933,18 @@
                         <span class="text-[11px] font-semibold text-purple-600 bg-purple-50 px-2.5 py-1 rounded-lg">Checklist interactive</span>
                     </div>
 
+                    <!-- RAPPEL CARTE D'IDENTITE - Checklist -->
+                    <label class="flex items-center gap-4 p-4 rounded-2xl border-2 border-amber-400 bg-amber-50 hover:bg-amber-100 cursor-pointer transition-all group mb-1">
+                        <input type="checkbox" class="w-5 h-5 rounded text-amber-500 focus:ring-amber-400 border-amber-400 flex-shrink-0">
+                        <span class="text-3xl flex-shrink-0">🪪</span>
+                        <div class="flex-1">
+                            <span class="font-black text-sm text-amber-900 block">Pièce d'identité &amp; Carte Vitale</span>
+                            <span class="text-xs text-amber-700 font-semibold">OBLIGATOIRE — CNI ou passeport. Sans elle, tu ne pars pas !</span>
+                        </div>
+                        <span class="flex-shrink-0 bg-amber-400 text-amber-900 text-[10px] font-black uppercase px-2.5 py-1 rounded-xl">⚠️ À ne pas oublier</span>
+                    </label>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pt-2">
-                        <label class="flex items-start gap-2.5 p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-colors text-xs text-slate-700">
-                            <input type="checkbox" class="mt-0.5 w-4 h-4 rounded text-purple-600 focus:ring-purple-500 border-slate-300">
-                            <div>
-                                <span class="font-bold block">Pièce d'identité & Carte Vitale</span>
-                                <span class="text-[11px] text-slate-500">Obligatoire au départ</span>
-                            </div>
-                        </label>
                         <label class="flex items-start gap-2.5 p-3 rounded-xl border border-red-200 bg-red-50/40 hover:bg-red-50 cursor-pointer transition-colors text-xs text-slate-700">
                             <input type="checkbox" class="mt-0.5 w-4 h-4 rounded text-purple-600 focus:ring-purple-500 border-slate-300">
                             <div>
