@@ -115,15 +115,48 @@ export default async function handler(req, res) {
             // Fetch participant details linked via questionnaire relation
             const participant = await fetchParticipantData(matchedBlock, foundUser.username);
             foundUser.participant = participant;
-            foundUser.comments = [
-                {
-                    id: 'c-welcome-1',
-                    author: 'BDE MMI Wave (Orga WEI)',
-                    role: 'orga',
-                    date: 'Message officiel',
-                    text: 'Bonjour ! Tes informations du questionnaire ont bien été synchronisées avec ton espace. Tu peux échanger avec l\'équipe organisatrice ci-dessous.'
+
+            // Fetch real comments from Notion Comments DB
+            const welcomeMsg = {
+                id: 'c-welcome-1',
+                author: 'BDE MMI Wave (Orga WEI)',
+                role: 'orga',
+                date: 'Message officiel',
+                text: "Bonjour ! Tes informations du questionnaire ont bien été synchronisées avec ton espace. Tu peux échanger avec l'équipe organisatrice ci-dessous."
+            };
+            foundUser.comments = [welcomeMsg];
+
+            const NOTION_TOKEN = process.env.NOTION_TOKEN;
+            const COMMENTS_DB = process.env.NOTION_COMMENTS_DB_ID;
+            if (NOTION_TOKEN && COMMENTS_DB) {
+                try {
+                    const commRes = await fetch(`https://api.notion.com/v1/databases/${COMMENTS_DB}/query`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${NOTION_TOKEN}`,
+                            'Content-Type': 'application/json',
+                            'Notion-Version': '2022-06-28'
+                        },
+                        body: JSON.stringify({
+                            filter: { property: 'Username', rich_text: { equals: uClean } },
+                            sorts: [{ property: 'Date', direction: 'ascending' }]
+                        })
+                    });
+                    const commData = await commRes.json();
+                    const notionComments = (commData.results || []).map(page => ({
+                        id: page.id,
+                        author: page.properties['Author']?.rich_text?.[0]?.plain_text || '',
+                        role: page.properties['Role']?.select?.name || 'student',
+                        text: page.properties['Text']?.rich_text?.[0]?.plain_text || '',
+                        date: page.properties['Date']?.date?.start || ''
+                    }));
+                    if (notionComments.length > 0) {
+                        foundUser.comments = [welcomeMsg, ...notionComments];
+                    }
+                } catch (e) {
+                    console.error('Erreur fetch comments:', e);
                 }
-            ];
+            }
 
             return res.status(200).json({
                 success: true,

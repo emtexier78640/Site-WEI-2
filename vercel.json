@@ -2,6 +2,9 @@
   "rewrites": [
     { "source": "/api/login", "destination": "/api/login" },
     { "source": "/api/mobilhome", "destination": "/api/mobilhome" },
-    { "source": "/api/covoit", "destination": "/api/covoit" }
+    { "source": "/api/covoit", "destination": "/api/covoit" },
+    { "source": "/api/comments", "destination": "/api/comments" },
+    { "source": "/api/bde/participants", "destination": "/api/bde/participants" },
+    { "source": "/api/bde/validate", "destination": "/api/bde/validate" }
   ]
 }
