@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/api/login", "destination": "/api/login" },
+    { "source": "/api/mobilhome", "destination": "/api/mobilhome" },
+    { "source": "/api/covoit", "destination": "/api/covoit" }
+  ]
+}
