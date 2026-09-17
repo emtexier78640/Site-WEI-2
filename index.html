@@ -814,6 +814,63 @@
                                 </form>
                             </div>
 
+                            <!-- SECTION: CONTACT -->
+                            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
+                                <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+                                    <div class="flex items-center gap-2.5">
+                                        <div class="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">📞</div>
+                                        <div>
+                                            <h4 class="font-extrabold text-slate-900 text-sm">Contact & Urgences</h4>
+                                            <p class="text-[11px] text-slate-500">Joindre l'équipe organisatrice du WEI</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-[10px] font-bold bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-full">MMI Wave BDE</span>
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                                    <!-- Responsable général -->
+                                    <a href="mailto:bde.mmi@iut.fr" class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/40 transition-all group">
+                                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">✉️</div>
+                                        <div>
+                                            <span class="text-[10px] font-extrabold uppercase text-slate-400 block">Email BDE</span>
+                                            <span class="font-bold text-slate-800 group-hover:text-indigo-700 transition-colors">bde.mmi@iut.fr</span>
+                                        </div>
+                                    </a>
+
+                                    <!-- Instagram -->
+                                    <a href="https://instagram.com/mmiwave" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-pink-300 hover:bg-pink-50/40 transition-all group">
+                                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-pink-500 to-orange-400 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">📸</div>
+                                        <div>
+                                            <span class="text-[10px] font-extrabold uppercase text-slate-400 block">Instagram</span>
+                                            <span class="font-bold text-slate-800 group-hover:text-pink-600 transition-colors">@mmiwave</span>
+                                        </div>
+                                    </a>
+
+                                    <!-- Numéro d'urgence -->
+                                    <a href="tel:+33600000000" class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50/40 transition-all group">
+                                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-400 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">📱</div>
+                                        <div>
+                                            <span class="text-[10px] font-extrabold uppercase text-slate-400 block">Urgence WEI</span>
+                                            <span class="font-bold text-slate-800 group-hover:text-emerald-700 transition-colors">06 00 00 00 00</span>
+                                        </div>
+                                    </a>
+
+                                    <!-- Lieu / Camping -->
+                                    <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50/40 transition-all group">
+                                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-sky-400 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">📍</div>
+                                        <div>
+                                            <span class="text-[10px] font-extrabold uppercase text-slate-400 block">Lieu du WEI</span>
+                                            <span class="font-bold text-slate-800 group-hover:text-blue-700 transition-colors">Voir sur Maps</span>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-2.5 text-xs text-amber-800">
+                                    <span class="text-base flex-shrink-0">⚠️</span>
+                                    <p><strong>En cas d'urgence sur place :</strong> contacte directement l'organisateur référent via le numéro ci-dessus. Pour toute question administrative, privilégie l'email ou le fil de messages ci-dessus.</p>
+                                </div>
+                            </div>
+
                             <!-- Quick Action Buttons -->
                             <div class="flex flex-col sm:flex-row gap-3 pt-2">
                                 <button onclick="switchMainView('technical')" class="w-full sm:flex-1 py-3 px-4 rounded-xl border border-slate-300 hover:bg-slate-50 font-semibold text-xs text-slate-700 transition-colors flex items-center justify-center gap-2">
@@ -1131,99 +1188,6 @@
         </div>
     </section>
 
-    <!-- ============================================== -->
-    <!-- MAIN VIEW 3: ESPACE ORGANISATEUR BDE           -->
-    <!-- ============================================== -->
-    <section id="view-bde" class="hidden flex-grow py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <!-- BDE Header -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-slate-200">
-            <div>
-                <div class="flex items-center gap-2.5">
-                    <span class="px-2.5 py-1 rounded-full bg-purple-100 text-purple-700 font-bold text-xs uppercase tracking-wider">Accès Staff Orga</span>
-                    <span class="text-xs text-slate-400">• Promotion 2026</span>
-                </div>
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Espace BDE MMI Wave</h2>
-                <p class="text-xs sm:text-sm text-slate-500">Gestion des participants, validation des dossiers & discussions en direct</p>
-            </div>
-            <div class="flex items-center gap-2">
-                <button onclick="loadBdeParticipants()" class="px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-xs flex items-center gap-1.5 shadow-sm transition-all">
-                    <span>🔄</span> <span>Actualiser</span>
-                </button>
-                <button onclick="logoutBde()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition-all">
-                    Quitter l'Espace BDE
-                </button>
-            </div>
-        </div>
-
-        <!-- BDE Statistics Cards -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 my-6">
-            <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-lg">👥</div>
-                <div>
-                    <span class="text-[11px] font-bold text-slate-400 uppercase">Inscrits</span>
-                    <h4 class="text-xl font-black text-slate-900" id="bde-stat-total">0</h4>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg">✅</div>
-                <div>
-                    <span class="text-[11px] font-bold text-slate-400 uppercase">Validés</span>
-                    <h4 class="text-xl font-black text-emerald-600" id="bde-stat-validated">0</h4>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">⏳</div>
-                <div>
-                    <span class="text-[11px] font-bold text-slate-400 uppercase">En attente</span>
-                    <h4 class="text-xl font-black text-amber-600" id="bde-stat-pending">0</h4>
-                </div>
-            </div>
-            <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex items-center gap-3.5">
-                <div class="w-11 h-11 rounded-xl bg-pink-100 text-pink-700 flex items-center justify-center font-bold text-lg">💬</div>
-                <div>
-                    <span class="text-[11px] font-bold text-slate-400 uppercase">Messages</span>
-                    <h4 class="text-xl font-black text-pink-600" id="bde-stat-messages">0</h4>
-                </div>
-            </div>
-        </div>
-
-        <!-- Main BDE Workspace: Split View -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            
-            <!-- Left Panel: Participants List (Col 5) -->
-            <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200 shadow-sm p-4 sm:p-5 space-y-4">
-                <div class="flex items-center justify-between">
-                    <h3 class="font-extrabold text-slate-900 text-sm">Participants & Discussions</h3>
-                    <span class="text-[11px] font-bold bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full" id="bde-filtered-count">0</span>
-                </div>
-
-                <!-- Search & Filters -->
-                <div class="space-y-2">
-                    <div class="relative">
-                        <input type="text" id="bde-search-input" oninput="filterBdeParticipants()" placeholder="Rechercher par nom, prénom, @" class="w-full pl-9 pr-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
-                        <span class="absolute left-3 top-2.5 text-slate-400 text-xs">🔍</span>
-                    </div>
-                    <div class="flex items-center gap-1.5 text-[11px] overflow-x-auto pb-1">
-                        <button onclick="setBdeFilter('all')" id="bde-filter-all" class="px-2.5 py-1 rounded-lg font-bold bg-purple-600 text-white flex-shrink-0 transition-all">Tous</button>
-                        <button onclick="setBdeFilter('pending')" id="bde-filter-pending" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 flex-shrink-0 transition-all">⏳ En attente</button>
-                        <button onclick="setBdeFilter('validated')" id="bde-filter-validated" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 flex-shrink-0 transition-all">✅ Validés</button>
-                        <button onclick="setBdeFilter('messages')" id="bde-filter-messages" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 flex-shrink-0 transition-all">💬 Avec messages</button>
-                    </div>
-                </div>
-
-                <!-- Participants Scrollable List -->
-                <div id="bde-participants-list" class="space-y-2.5 max-h-[520px] overflow-y-auto pr-1">
-                    <!-- Dynamic participant cards -->
-                </div>
-            </div>
-
-            <!-- Right Panel: Active Participant Discussion & Dossier (Col 7) -->
-            <div class="lg:col-span-7 bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col min-h-[580px]" id="bde-active-panel">
-                <!-- Selected participant conversation & details rendered here -->
-            </div>
-
-        </div>
-    </section>
 
     <!-- ============================================== -->
     <!-- FOOTER                                         -->
@@ -1255,18 +1219,16 @@
         let currentStep = 1;
         let activeView = 'onboarding'; // 'onboarding' or 'technical'
 
-        // Switch between Main Funnel, Technical Info, and BDE View
+        // Switch between Main Funnel and Technical Info
         function switchMainView(viewName) {
             activeView = viewName;
             const onboardingView = document.getElementById('view-onboarding');
             const technicalView = document.getElementById('view-technical');
-            const bdeView = document.getElementById('view-bde');
             const btnOnboarding = document.getElementById('nav-btn-onboarding');
             const btnTechnical = document.getElementById('nav-btn-technical');
-            const btnBde = document.getElementById('nav-btn-bde');
 
             // Reset tab styles
-            [btnOnboarding, btnTechnical, btnBde].forEach(btn => {
+            [btnOnboarding, btnTechnical].forEach(btn => {
                 btn?.classList.remove('bg-white', 'text-purple-700', 'shadow-sm');
                 btn?.classList.add('text-slate-600');
             });
@@ -1274,7 +1236,6 @@
             if (viewName === 'onboarding') {
                 onboardingView?.classList.remove('hidden');
                 technicalView?.classList.add('hidden');
-                bdeView?.classList.add('hidden');
 
                 btnOnboarding?.classList.add('bg-white', 'text-purple-700', 'shadow-sm');
                 btnOnboarding?.classList.remove('text-slate-600');
@@ -1282,20 +1243,10 @@
             } else if (viewName === 'technical') {
                 onboardingView?.classList.add('hidden');
                 technicalView?.classList.remove('hidden');
-                bdeView?.classList.add('hidden');
 
                 btnTechnical?.classList.add('bg-white', 'text-purple-700', 'shadow-sm');
                 btnTechnical?.classList.remove('text-slate-600');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else if (viewName === 'bde') {
-                onboardingView?.classList.add('hidden');
-                technicalView?.classList.add('hidden');
-                bdeView?.classList.remove('hidden');
-
-                btnBde?.classList.add('bg-white', 'text-purple-700', 'shadow-sm');
-                btnBde?.classList.remove('text-slate-600');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                loadBdeParticipants();
             }
         }
 
@@ -1441,15 +1392,6 @@
                 const result = await response.json();
 
                 if (response.ok && result.success) {
-                    if (result.isBde) {
-                        feedback.className = "mb-4 p-3.5 rounded-xl text-xs font-semibold bg-purple-50 text-purple-700 border border-purple-200 block";
-                        feedback.textContent = `👑 Connexion Staff BDE réussie ! Ouverture de l'espace organisateur...`;
-                        localStorage.setItem('weigo_bde_logged', 'true');
-                        setTimeout(() => {
-                            switchMainView('bde');
-                        }, 400);
-                        return;
-                    }
 
                     feedback.className = "mb-4 p-3.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 block";
                     feedback.textContent = `✓ Connexion réussie ! Bienvenue ${result.user.username}. Chargement de ton espace...`;
@@ -2487,499 +2429,6 @@
             goToStep(2);
         }
 
-        // ==============================================
-        // BDE MANAGEMENT SYSTEM & MULTI-USER MESSAGING
-        // ==============================================
-        let bdeParticipants = [];
-        let bdeCurrentFilter = 'all';
-        let bdeSelectedUsername = null;
-
-        async function loadBdeParticipants() {
-            try {
-                const endpoints = ['/api/bde/participants', 'http://localhost:3005/api/bde/participants', 'http://localhost:3000/api/bde/participants'];
-                let res = null;
-                for (const u of endpoints) {
-                    try {
-                        const r = await fetch(u);
-                        if (r.ok) { res = r; break; }
-                    } catch(e){}
-                }
-                if (!res) throw new Error("Impossible de joindre l'API BDE");
-                const data = await res.json();
-                bdeParticipants = data.participants || [];
-
-                updateBdeStats();
-                filterBdeParticipants();
-
-                if (!bdeSelectedUsername && bdeParticipants.length) {
-                    selectBdeParticipant(bdeParticipants[0].username);
-                } else if (bdeSelectedUsername) {
-                    selectBdeParticipant(bdeSelectedUsername);
-                }
-            } catch (err) {
-                console.error('Error loading BDE data:', err);
-            }
-        }
-
-        function updateBdeStats() {
-            const total = bdeParticipants.length;
-            const validated = bdeParticipants.filter(p => p.isValidated).length;
-            const pending = total - validated;
-            let totalMessages = 0;
-            bdeParticipants.forEach(p => {
-                if (p.comments) totalMessages += p.comments.length;
-            });
-
-            const elTotal = document.getElementById('bde-stat-total');
-            const elVal = document.getElementById('bde-stat-validated');
-            const elPend = document.getElementById('bde-stat-pending');
-            const elMsg = document.getElementById('bde-stat-messages');
-
-            if (elTotal) elTotal.textContent = total;
-            if (elVal) elVal.textContent = validated;
-            if (elPend) elPend.textContent = pending;
-            if (elMsg) elMsg.textContent = totalMessages;
-        }
-
-        function setBdeFilter(filter) {
-            bdeCurrentFilter = filter;
-            ['all', 'pending', 'validated', 'messages'].forEach(f => {
-                const btn = document.getElementById('bde-filter-' + f);
-                if (btn) {
-                    if (f === filter) {
-                        btn.className = "px-2.5 py-1 rounded-lg font-bold bg-purple-600 text-white flex-shrink-0 transition-all";
-                    } else {
-                        btn.className = "px-2.5 py-1 rounded-lg font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 flex-shrink-0 transition-all";
-                    }
-                }
-            });
-            filterBdeParticipants();
-        }
-
-        function filterBdeParticipants() {
-            const search = (document.getElementById('bde-search-input')?.value || '').toLowerCase().trim();
-            const filtered = bdeParticipants.filter(p => {
-                const matchSearch = !search || 
-                    (p.fullName && p.fullName.toLowerCase().includes(search)) || 
-                    (p.username && p.username.toLowerCase().includes(search)) ||
-                    (p.nom && p.nom.toLowerCase().includes(search)) ||
-                    (p.prenom && p.prenom.toLowerCase().includes(search));
-                
-                if (!matchSearch) return false;
-
-                if (bdeCurrentFilter === 'pending') return !p.isValidated;
-                if (bdeCurrentFilter === 'validated') return p.isValidated;
-                if (bdeCurrentFilter === 'messages') return p.comments && p.comments.length > 1;
-                return true;
-            });
-
-            const countEl = document.getElementById('bde-filtered-count');
-            if (countEl) countEl.textContent = `${filtered.length} affiché(s)`;
-
-            renderBdeParticipantsList(filtered);
-        }
-
-        function renderBdeParticipantsList(list) {
-            const container = document.getElementById('bde-participants-list');
-            if (!container) return;
-            container.innerHTML = '';
-
-            if (!list.length) {
-                container.innerHTML = `
-                    <div class="text-center py-8 text-xs text-slate-400">
-                        Aucun participant correspondant.
-                    </div>
-                `;
-                return;
-            }
-
-            list.forEach(p => {
-                const isSelected = bdeSelectedUsername && bdeSelectedUsername.toLowerCase() === p.username.toLowerCase();
-                const card = document.createElement('div');
-                card.onclick = () => selectBdeParticipant(p.username);
-                card.className = `p-3.5 rounded-2xl border transition-all cursor-pointer ${
-                    isSelected 
-                        ? 'bg-purple-50/70 border-purple-300 ring-2 ring-purple-400/20 shadow-sm' 
-                        : 'bg-white hover:bg-slate-50 border-slate-200/80 hover:border-slate-300'
-                }`;
-
-                const lastMsg = p.lastComment ? p.lastComment.text : "Aucun message pour l'instant";
-                const lastDate = p.lastComment ? p.lastComment.date : "";
-
-                card.innerHTML = `
-                    <div class="flex items-start justify-between gap-2">
-                        <div class="space-y-0.5">
-                            <div class="flex items-center gap-1.5">
-                                <h4 class="font-extrabold text-xs text-slate-900">${escapeHtml(p.fullName || p.username)}</h4>
-                                <span class="text-[10px] text-slate-400 font-mono">@${escapeHtml(p.username)}</span>
-                            </div>
-                            <span class="text-[10px] text-slate-500 block">${escapeHtml(p.statut || 'Participant')} • ${escapeHtml(p.mobilhome || 'Mobilhome')}</span>
-                        </div>
-                        <div class="flex flex-col items-end gap-1">
-                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                                p.isValidated 
-                                    ? 'bg-emerald-100 text-emerald-800' 
-                                    : 'bg-amber-100 text-amber-800'
-                            }">
-                                ${p.isValidated ? '✓ Validé' : '⏳ En attente'}
-                            </span>
-                            <button onclick="toggleBdeValidation('${escapeHtml(p.username)}', ${p.isValidated ? 'true' : 'false'}, event)" class="text-[9px] font-semibold text-purple-600 hover:text-purple-800 hover:underline">
-                                [ ${p.isValidated ? 'Mettre en attente' : 'Valider'} ]
-                            </button>
-                        </div>
-                    </div>
-                    <div class="mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                        <p class="truncate max-w-[200px] text-slate-600 font-medium">💬 ${escapeHtml(lastMsg)}</p>
-                        <span class="text-[9px] text-slate-400 flex-shrink-0">${escapeHtml(lastDate)}</span>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        function selectBdeParticipant(username) {
-            bdeSelectedUsername = username;
-            renderBdeParticipantsList(bdeParticipants);
-            renderBdeActiveParticipant();
-        }
-
-        function renderBdeActiveParticipant() {
-            const panel = document.getElementById('bde-active-panel');
-            if (!panel) return;
-
-            const p = bdeParticipants.find(x => x.username.toLowerCase() === (bdeSelectedUsername || '').toLowerCase());
-            if (!p) {
-                panel.innerHTML = `
-                    <div class="m-auto text-center py-16 px-4 space-y-2 text-slate-400 text-xs">
-                        <span class="text-3xl">👥</span>
-                        <p>Sélectionne un participant dans la liste à gauche pour voir son dossier et discuter avec lui.</p>
-                    </div>
-                `;
-                return;
-            }
-
-            const comments = p.comments || [];
-
-            let commentsHtml = '';
-            if (!comments.length) {
-                commentsHtml = `<div class="text-center py-8 text-xs text-slate-400">Aucun message échangé pour le moment.</div>`;
-            } else {
-                comments.forEach(c => {
-                    const isOrga = c.role === 'orga';
-                    commentsHtml += `
-                        <div class="${isOrga ? 'ml-6' : 'mr-6'} flex flex-col ${isOrga ? 'items-end' : 'items-start'} space-y-1">
-                            <div class="flex items-center gap-1 text-[10px] text-slate-400">
-                                <span class="font-bold ${isOrga ? 'text-purple-700' : 'text-slate-700'}">${escapeHtml(c.author)}</span>
-                                <span>•</span>
-                                <span>${escapeHtml(c.date || '')}</span>
-                            </div>
-                            <div class="p-3 rounded-2xl text-xs max-w-md ${
-                                isOrga 
-                                    ? 'bg-gradient-to-r from-purple-600 to-pink-500 text-white shadow-sm' 
-                                    : 'bg-white border border-slate-200 text-slate-800 shadow-sm'
-                            }">
-                                ${escapeHtml(c.text)}
-                            </div>
-                        </div>
-                    `;
-                });
-            }
-
-            panel.innerHTML = `
-                <!-- Participant Header -->
-                <div class="p-5 border-b border-slate-200 bg-slate-50/50 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                    <div class="space-y-1">
-                        <div class="flex items-center gap-2">
-                            <h3 class="text-base font-black text-slate-900">${escapeHtml(p.fullName || p.username)}</h3>
-                            <span class="text-xs text-slate-400 font-mono">@${escapeHtml(p.username)}</span>
-                            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${
-                                p.isValidated ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
-                            }">
-                                ${p.isValidated ? '✓ Dossier Validé' : '⏳ En attente de validation'}
-                            </span>
-                        </div>
-                        <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-500">
-                            <span>Statut : <strong>${escapeHtml(p.statut || 'Participant')}</strong></span>
-                            <span>•</span>
-                            <span>Naissance : <strong>${escapeHtml(p.participant?.dateNaissance || p.dateNaissance || 'N/A')}</strong></span>
-                            <span>•</span>
-                            <span>Mobilhome : <strong>${escapeHtml(p.mobilhome || 'Non spécifié')}</strong></span>
-                            <span>•</span>
-                            <span>Voiture : <strong>${escapeHtml(p.voiture || 'Non')}</strong></span>
-                            <span>•</span>
-                            <span>Covoiturage : <strong>${escapeHtml(p.covoiturage || 'Non')}</strong></span>
-                        </div>
-                    </div>
-                    <button onclick="toggleBdeValidation('${escapeHtml(p.username)}', ${p.isValidated ? 'true' : 'false'}, event)" class="px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm flex items-center gap-1.5 ${
-                        p.isValidated 
-                            ? 'bg-amber-100 text-amber-900 hover:bg-amber-200' 
-                            : 'bg-emerald-600 text-white hover:bg-emerald-700'
-                    }">
-                        <span>${p.isValidated ? '⚠️ Passer en attente' : '✅ Valider l\'inscription'}</span>
-                    </button>
-                </div>
-
-                <!-- BDE Participant Documents Control Bar -->
-                <div class="px-5 py-3 bg-amber-50/70 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-                    <div class="flex flex-wrap items-center gap-2 text-[11px]">
-                        <span class="font-extrabold text-slate-800 uppercase tracking-wider text-[10px]">Contrôle Pièces :</span>
-                        <span class="px-2 py-0.5 rounded-lg font-bold ${
-                            (p.hasAttestation || (p.documents && p.documents.some(d => d.type === 'attestation')))
-                                ? 'bg-emerald-100 text-emerald-800'
-                                : 'bg-red-100 text-red-800'
-                        }">
-                            ${(p.hasAttestation || (p.documents && p.documents.some(d => d.type === 'attestation'))) ? '✓ Assurance OK' : '⚠️ Assurance manquante'}
-                        </span>
-                        <span class="px-2 py-0.5 rounded-lg font-bold ${
-                            (p.hasDecharge || (p.documents && p.documents.some(d => d.type === 'decharge')))
-                                ? 'bg-emerald-100 text-emerald-800'
-                                : 'bg-red-100 text-red-800'
-                        }">
-                            ${(p.hasDecharge || (p.documents && p.documents.some(d => d.type === 'decharge'))) ? '✓ Décharge OK' : '⚠️ Décharge manquante'}
-                        </span>
-                        ${p.statut === 'Mineur' ? `
-                            <span class="px-2 py-0.5 rounded-lg font-bold ${
-                                (p.documents && p.documents.some(d => d.type === 'parentale'))
-                                    ? 'bg-emerald-100 text-emerald-800'
-                                    : 'bg-red-100 text-red-800'
-                            }">
-                                ${(p.documents && p.documents.some(d => d.type === 'parentale')) ? '✓ Autorisation Parentale OK' : '⚠️ Autorisation parentale manquante'}
-                            </span>
-                        ` : ''}
-                    </div>
-                    <div class="flex items-center gap-2 flex-wrap">
-                        ${p.documents && p.documents.length ? `
-                            <span class="font-extrabold text-[11px] text-purple-700 bg-purple-100 px-2 py-0.5 rounded-md">
-                                📎 ${p.documents.length} document(s)
-                            </span>
-                            ${p.documents.map(d => `
-                                ${d.fileData ? `<button type="button" onclick="viewBdeDocument('${escapeHtml(p.username)}', '${d.id}')" class="px-2 py-0.5 rounded bg-white hover:bg-purple-50 text-slate-700 border border-slate-200 text-[10px] font-bold shadow-sm flex items-center gap-1"><span>👁️</span> <span class="truncate max-w-[100px]">${escapeHtml(d.label || d.name)}</span></button>` : ''}
-                            `).join('')}
-                        ` : '<span class="text-[11px] text-slate-400 italic">Aucun fichier téléversé</span>'}
-                    </div>
-                </div>
-
-                <!-- BDE Mobilhôme Préférences Bar -->
-                <div class="px-5 py-3 bg-teal-50/60 border-b border-slate-200 flex flex-col sm:flex-row sm:items-start gap-2 text-xs">
-                    <span class="font-extrabold text-teal-800 uppercase tracking-wider text-[10px] flex-shrink-0 pt-0.5">🏕️ Vœux Mobilhôme :</span>
-                    ${p.mobilhomePrefs && p.mobilhomePrefs.membres
-                        ? `<div class="flex flex-col gap-0.5">
-                                <span class="font-semibold text-slate-800">${escapeHtml(p.mobilhomePrefs.membres)}</span>
-                                ${p.mobilhomePrefs.note ? `<span class="text-slate-500 italic">${escapeHtml(p.mobilhomePrefs.note)}</span>` : ''}
-                                <span class="text-[10px] text-slate-400">${escapeHtml(p.mobilhomePrefs.submittedAt || '')}</span>
-                           </div>`
-                        : '<span class="text-slate-400 italic">Aucune préférence renseignée — groupe constitué par le BDE</span>'
-                    }
-                </div>
-
-                <!-- BDE Covoiturage Bar -->
-                <div class="px-5 py-3 bg-blue-50/50 border-b border-slate-200 flex flex-col gap-2 text-xs">
-                    <div class="flex flex-col sm:flex-row sm:items-start gap-2">
-                        <span class="font-extrabold text-blue-800 uppercase tracking-wider text-[10px] flex-shrink-0 pt-0.5">🚗 Covoiturage :</span>
-                        ${p.covoitData
-                            ? p.covoitData.role === 'conducteur'
-                                ? `<div class="flex flex-col gap-0.5">
-                                    <span class="font-bold text-blue-900">🪑 Conducteur — ${escapeHtml(p.covoitData.placesDispos || '?')} place(s) disponible(s)</span>
-                                    ${p.covoitData.note ? `<span class="text-slate-500 italic">${escapeHtml(p.covoitData.note)}</span>` : ''}
-                                   </div>`
-                                : `<span class="text-indigo-700 font-semibold">🙋 Passager — en attente d'attribution${p.covoitData.chauffeurAssigne ? ` → 🚗 <strong>${escapeHtml(p.covoitData.chauffeurAssigne)}</strong>` : ''}</span>`
-                            : `<span class="text-slate-500">${p.voiture === 'Oui' && p.covoiturage === 'Oui' ? '⏳ Conducteur — places non encore renseignées' : p.voiture === 'Oui' ? '🚗 Voiture perso, pas de covoit proposé' : '🙋 Passager — pas de voiture'}</span>`
-                        }
-                    </div>
-                    ${(!p.voiture || p.voiture !== 'Oui') && !(p.covoitData?.chauffeurAssigne) ? `
-                        <div class="flex items-center gap-2">
-                            <input type="text" id="bde-covoit-assign-${escapeHtml(p.username)}" placeholder="Nom du chauffeur attribué..." class="flex-1 px-2.5 py-1.5 rounded-lg border border-blue-200 bg-white text-xs focus:outline-none focus:ring-1 focus:ring-blue-400 shadow-sm">
-                            <button onclick="bdeCovoitAssignDriver('${escapeHtml(p.username)}')" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white text-[10px] font-black rounded-lg shadow-sm active:scale-95 transition-all flex-shrink-0">Attribuer 🚗</button>
-                        </div>
-                    ` : ''}
-                </div>
-
-                <!-- Chat Feed -->
-                <div id="bde-chat-feed" class="flex-grow p-5 space-y-3 overflow-y-auto max-h-[380px] bg-slate-50/30">
-                    ${commentsHtml}
-                </div>
-
-                <!-- Quick Canned Replies & Send Form -->
-                <div class="p-4 border-t border-slate-200 bg-white space-y-3">
-                    <!-- Quick replies chips -->
-                    <div class="flex items-center gap-1.5 overflow-x-auto pb-1 text-[10px]">
-                        <span class="text-slate-400 font-bold uppercase text-[9px] flex-shrink-0">Réponses types :</span>
-                        <button type="button" onclick="sendBdeCannedReply('✅ Ton dossier est bien validé ! Rendez-vous vendredi devant les cars.')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-purple-100 text-slate-700 hover:text-purple-700 flex-shrink-0 border border-slate-200 transition-all">
-                            ✅ Dossier validé
-                        </button>
-                        <button type="button" onclick="sendBdeCannedReply('⚠️ N\\'oublie pas de déposer ta décharge de responsabilité signée.')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-purple-100 text-slate-700 hover:text-purple-700 flex-shrink-0 border border-slate-200 transition-all">
-                            ⚠️ Décharge manquante
-                        </button>
-                        <button type="button" onclick="sendBdeCannedReply('ℹ️ Les draps ne sont pas fournis dans les mobil-homes, pense à apporter ton sac de couchage !')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-purple-100 text-slate-700 hover:text-purple-700 flex-shrink-0 border border-slate-200 transition-all">
-                            ℹ️ Sac de couchage
-                        </button>
-                    </div>
-
-                    <!-- Send form -->
-                    <form id="bde-reply-form" onsubmit="handleBdeSendReply(event)" class="flex gap-2">
-                        <input type="text" id="bde-reply-input" required placeholder="Répondre à ${escapeHtml(p.prenom || p.username)} en tant que BDE..." class="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs focus:outline-none focus:ring-2 focus:ring-purple-500">
-                        <button type="submit" class="px-5 py-2.5 bg-gradient-to-r from-purple-600 to-pink-500 hover:from-purple-700 hover:to-pink-600 text-white font-bold text-xs rounded-xl shadow-sm active:scale-95 transition-all flex items-center gap-1.5 flex-shrink-0">
-                            <span>Envoyer BDE</span>
-                            <span>📨</span>
-                        </button>
-                    </form>
-                </div>
-            `;
-
-            const chatFeed = document.getElementById('bde-chat-feed');
-            if (chatFeed) chatFeed.scrollTop = chatFeed.scrollHeight;
-        }
-
-        function logoutBde() {
-            localStorage.removeItem('weigo_bde_logged');
-            switchMainView('onboarding');
-        }
-
-        async function toggleBdeValidation(username, currentStatus, event) {
-            if (event) event.stopPropagation();
-            const newStatus = !currentStatus;
-            try {
-                const endpoints = ['/api/bde/validate', 'http://localhost:3005/api/bde/validate', 'http://localhost:3000/api/bde/validate'];
-                for (const u of endpoints) {
-                    try {
-                        const r = await fetch(u, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ username, validated: newStatus })
-                        });
-                        if (r.ok) break;
-                    } catch(e){}
-                }
-                const p = bdeParticipants.find(x => x.username.toLowerCase() === username.toLowerCase());
-                if (p) p.isValidated = newStatus;
-                updateBdeStats();
-                filterBdeParticipants();
-                if (bdeSelectedUsername && bdeSelectedUsername.toLowerCase() === username.toLowerCase()) {
-                    renderBdeActiveParticipant();
-                }
-            } catch(e) {
-                console.error(e);
-            }
-        }
-
-        async function handleBdeSendReply(event) {
-            event.preventDefault();
-            if (!bdeSelectedUsername) return;
-            const input = document.getElementById('bde-reply-input');
-            const text = input.value.trim();
-            if (!text) return;
-
-            const now = new Date();
-            const dateStr = now.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
-            const newComment = {
-                id: 'c-' + Date.now(),
-                author: 'BDE MMI Wave (Orga WEI)',
-                role: 'orga',
-                date: dateStr,
-                text
-            };
-
-            const p = bdeParticipants.find(x => x.username.toLowerCase() === bdeSelectedUsername.toLowerCase());
-            if (p) {
-                if (!p.comments) p.comments = [];
-                p.comments.push(newComment);
-                p.lastComment = newComment;
-                renderBdeActiveParticipant();
-                filterBdeParticipants();
-            }
-            input.value = '';
-
-            try {
-                const endpoints = ['/api/comments', 'http://localhost:3005/api/comments', 'http://localhost:3000/api/comments'];
-                for (const u of endpoints) {
-                    try {
-                        const r = await fetch(u, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                username: bdeSelectedUsername,
-                                author: 'BDE MMI Wave (Orga WEI)',
-                                role: 'orga',
-                                text
-                            })
-                        });
-                        if (r.ok) break;
-                    } catch(e){}
-                }
-            } catch(e) {
-                console.error(e);
-            }
-        }
-
-        async function bdeCovoitAssignDriver(passengerUsername) {
-            const input = document.getElementById('bde-covoit-assign-' + passengerUsername);
-            const chauffeurAssigne = input?.value.trim();
-            if (!chauffeurAssigne) {
-                alert('Merci de saisir le nom du chauffeur à attribuer.');
-                return;
-            }
-            try {
-                const res = await fetch('/api/covoit', {
-                    method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ passengerUsername, chauffeurAssigne })
-                });
-                if (res.ok) {
-                    alert(`✓ Chauffeur "${chauffeurAssigne}" attribué à ${passengerUsername}.`);
-                    loadBdeParticipants(); // Refresh BDE panel
-                } else {
-                    alert('Erreur lors de l\'attribution. Réessaie.');
-                }
-            } catch (e) {
-                alert('Erreur de connexion.');
-            }
-        }
-
-        function sendBdeCannedReply(text) {
-            const input = document.getElementById('bde-reply-input');
-            if (input) {
-                input.value = text;
-                const form = document.getElementById('bde-reply-form');
-                if (form) form.requestSubmit ? form.requestSubmit() : handleBdeSendReply(new Event('submit'));
-            }
-        }
-
-        function viewBdeDocument(username, docId) {
-            const p = bdeParticipants.find(x => x.username.toLowerCase() === username.toLowerCase());
-            if (!p) return;
-            const doc = (p.documents || []).find(d => d.id === docId);
-            if (!doc || !doc.fileData) {
-                alert("Aperçu non disponible pour ce document.");
-                return;
-            }
-            const win = window.open();
-            if (win) {
-                win.document.write(`
-                    <!DOCTYPE html>
-                    <html>
-                    <head><title>Document - ${escapeHtml(doc.name)}</title></head>
-                    <body style="margin:0;display:flex;flex-direction:column;align-items:center;background:#0f172a;min-height:100vh;font-family:system-ui,-apple-system,sans-serif;color:white;">
-                        <div style="padding:15px 25px;background:#1e293b;width:100%;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.3);">
-                            <div style="display:flex;align-items:center;gap:10px;">
-                                <span style="font-size:20px;">📄</span>
-                                <div>
-                                    <strong style="display:block;font-size:14px;">${escapeHtml(p.fullName || p.username)} — ${escapeHtml(doc.label || doc.name)}</strong>
-                                    <span style="font-size:12px;color:#94a3b8;">${escapeHtml(doc.name)} • ${escapeHtml(doc.size || '')} • Reçu le ${escapeHtml(doc.date || '')}</span>
-                                </div>
-                            </div>
-                            <a href="${doc.fileData}" download="${escapeHtml(doc.name)}" style="color:white;text-decoration:none;font-weight:bold;font-size:13px;padding:8px 16px;background:linear-gradient(to right, #9333ea, #db2777);border-radius:10px;">Télécharger 📥</a>
-                        </div>
-                        <div style="flex-grow:1;display:flex;align-items:center;justify-content:center;width:100%;padding:20px;box-sizing:border-box;">
-                            ${doc.fileData.startsWith('data:image/') 
-                                ? `<img src="${doc.fileData}" style="max-width:90%;max-height:85vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);" />`
-                                : `<iframe src="${doc.fileData}" style="width:90vw;height:85vh;border:none;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);background:white;"></iframe>`
-                            }
-                        </div>
-                    </body>
-                    </html>
-                `);
-            }
-        }
 
         // Check stored profile on load
         window.addEventListener('DOMContentLoaded', () => {
