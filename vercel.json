@@ -1,4 +1,7 @@
 {
+  "rewrites": [
+    { "source": "/api/auth/logout", "destination": "/api/me" }
+  ],
   "headers": [
     {
       "source": "/((?!api/).*)",
