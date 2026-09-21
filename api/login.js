@@ -27,7 +27,10 @@ export default async function handler(req, res) {
     const pClean = password.trim();
 
     // 1. Special BDE Staff login check
-    if (uClean === 'bde' && (pClean === 'bde2026' || pClean === 'bde' || pClean === 'mmiwave' || pClean === 'admin')) {
+    // Les mots de passe BDE sont définis dans la variable d'environnement BDE_PASSWORDS
+    // (liste séparée par des virgules, ex: "monmotdepasse1,monmotdepasse2")
+    const bdePwds = (process.env.BDE_PASSWORDS || '').split(',').map(p => p.trim()).filter(Boolean);
+    if (uClean === 'bde' && bdePwds.includes(pClean)) {
         return res.status(200).json({
             success: true,
             isBde: true,

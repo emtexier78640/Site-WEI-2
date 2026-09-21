@@ -1,0 +1,15 @@
+# Variables d'environnement — NE JAMAIS committer !
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Dépendances Node
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Fichiers système macOS
+.DS_Store
