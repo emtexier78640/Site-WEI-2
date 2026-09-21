@@ -1,4 +1,4 @@
-// POST /api/auth/register — self-registration gated by an invite code.
+// POST /api/auth/register — self-registration (rate-limited per IP).
 import crypto from 'node:crypto';
 import bcrypt from 'bcryptjs';
 import { json, methods, readBody, clientIp, errorResponse } from '../_lib/http.js';
@@ -14,7 +14,6 @@ const RATE_KEY = 'register';
 const SCHEMA = {
     username: { type: 'string', required: true, min: 3, max: 32 },
     password: { type: 'string', required: true, min: 8, max: 128 },
-    inviteCode: { type: 'string', required: true, min: 1, max: 200 },
     prenom: { type: 'string', required: true, min: 1, max: 60 },
     nom: { type: 'string', required: true, min: 1, max: 60 },
     dateNaissance: { type: 'date', required: true },
@@ -23,14 +22,6 @@ const SCHEMA = {
     voiture: { type: 'enum', values: ['Oui', 'Non'] },
     covoiturage: { type: 'string', max: 100 },
 };
-
-function inviteCodeMatches(candidate) {
-    const expected = process.env.WEI_INVITE_CODE;
-    if (!expected || typeof candidate !== 'string') return false;
-    const a = crypto.createHash('sha256').update(candidate).digest();
-    const b = crypto.createHash('sha256').update(expected).digest();
-    return crypto.timingSafeEqual(a, b);
-}
 
 function randomTicketId() {
     return 'WEIGO-' + String(crypto.randomInt(0, 1_000_000)).padStart(6, '0');
@@ -57,11 +48,6 @@ export default async function handler(req, res) {
 
         if (!/^[a-z0-9._-]{3,32}$/.test(d.username)) {
             return json(res, 400, { error: 'Identifiant invalide : 3 à 32 caractères (lettres minuscules, chiffres, . _ -)' });
-        }
-
-        if (!inviteCodeMatches(d.inviteCode)) {
-            await recordAttempt(ip, RATE_KEY);
-            return json(res, 403, { error: 'Code d’invitation invalide' });
         }
 
         const passwordHash = await bcrypt.hash(d.password, BCRYPT_COST);
