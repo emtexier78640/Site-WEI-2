@@ -14,7 +14,11 @@ function iso(d) {
 function dateOnly(d) {
     if (!d) return '';
     if (typeof d === 'string') return d.slice(0, 10);
-    return iso(d).slice(0, 10);
+    if (!(d instanceof Date) || Number.isNaN(d.getTime())) return '';
+    // Colonne `date` parsée à minuit local par le driver : composants locaux, pas toISOString.
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${d.getFullYear()}-${mm}-${dd}`;
 }
 
 function humanSize(bytes) {

@@ -25,8 +25,11 @@ export function formatDateNaissance(d) {
         return m ? m[1] : '';
     }
     if (d instanceof Date && !Number.isNaN(d.getTime())) {
-        // Une colonne `date` est renvoyée à minuit UTC par le driver.
-        return d.toISOString().slice(0, 10);
+        // Le driver parse une colonne `date` à minuit LOCAL : lire les composants locaux
+        // (toISOString décalerait la date d'un jour en Europe/Paris).
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
+        return `${d.getFullYear()}-${mm}-${dd}`;
     }
     return '';
 }
