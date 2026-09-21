@@ -1,5 +1,6 @@
 // api/_lib/auth.js — JWT session in an httpOnly cookie + role gates.
 // Every protected route derives the user from the token, never from the body.
+import './env.js';
 import jwt from 'jsonwebtoken';
 import { json } from './http.js';
 

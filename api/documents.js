@@ -82,7 +82,8 @@ function parseMultipart(req) {
                 headers: req.headers,
                 limits: { files: 1, fields: 5, fieldSize: 2048, fileSize: MAX_FILE_BYTES },
             });
-        } catch {
+        } catch (e) {
+            console.error('busboy init failed:', e?.message, 'content-type=', req.headers['content-type']);
             return reject({ status: 400, error: 'Requête multipart invalide' });
         }
 
@@ -142,7 +143,25 @@ function parseMultipart(req) {
         bb.on('close', finish);
         bb.on('finish', finish);
         req.on('error', () => fail({ status: 400, error: 'Connexion interrompue' }));
-        req.pipe(bb);
+
+        // The Vercel Node runtime buffers the body and replays it through overridden
+        // req.on('data'/'end') hooks (or exposes it as req.body). req.pipe() bypasses
+        // those hooks, so feed busboy explicitly.
+        if (Buffer.isBuffer(req.body)) {
+            bb.end(req.body);
+        } else if (typeof req.body === 'string') {
+            bb.end(Buffer.from(req.body));
+        } else {
+            let received = 0;
+            req.on('data', (chunk) => {
+                received += chunk.length;
+                if (received > MAX_FILE_BYTES + 64 * 1024) {
+                    return fail({ status: 413, error: 'Fichier trop volumineux (max 4 Mo)' });
+                }
+                if (!done) bb.write(chunk);
+            });
+            req.on('end', () => { if (!done) bb.end(); });
+        }
     });
 }
 

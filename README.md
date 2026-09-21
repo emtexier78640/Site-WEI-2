@@ -57,7 +57,7 @@ vercel env pull .env.local   # récupère DATABASE_URL, BLOB_READ_WRITE_TOKEN, e
 # complète .env.local : JWT_SECRET, WEI_INVITE_CODE, ADMIN_USERNAME, ADMIN_PASSWORD_HASH
 npm run db:migrate           # applique db/schema.sql
 npm run db:seed-admin        # crée / met à jour le compte admin
-npm run dev                  # vercel dev → http://localhost:3000
+npx vercel dev                  # vercel dev → http://localhost:3000
 ```
 
 ### Générer un hash bcrypt
@@ -82,7 +82,7 @@ Copie la valeur affichée dans `ADMIN_PASSWORD_HASH`, puis relance `npm run db:s
 ## Checklist de QA manuelle
 
 1. `npm install`, puis `grep -rn "localhost\|notion\|weigo_user_profile\|document.write\|Access-Control" index.html admin.html api/` ne renvoie rien ; `node --check` passe sur chaque fichier de `api/` et `db/`.
-2. Avec une base Neon (`vercel env pull`, `npm run db:migrate`, `npm run db:seed-admin`, `npm run dev`), vérifier en `curl` :
+2. Avec une base Neon (`vercel env pull`, `npm run db:migrate`, `npm run db:seed-admin`, `npx vercel dev`), vérifier en `curl` :
    - inscription avec un mauvais code d’invitation → `403` ;
    - inscription valide → `201` et cookie `HttpOnly; Secure; SameSite=Strict` ;
    - `GET /api/me` sans cookie → `401` ;

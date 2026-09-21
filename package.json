@@ -8,7 +8,6 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "vercel dev",
     "db:migrate": "node db/migrate.js",
     "db:seed-admin": "node db/seed-admin.js"
   },
@@ -20,6 +19,6 @@
     "jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
-    "vercel": "^37"
+    "vercel": "^59.23.2"
   }
 }

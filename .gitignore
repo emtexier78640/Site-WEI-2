@@ -16,3 +16,5 @@ npm-debug.log*
 
 # Vercel (config locale du projet)
 .vercel/
+.vercel
+.env*
