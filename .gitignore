@@ -13,3 +13,6 @@ npm-debug.log*
 
 # Fichiers système macOS
 .DS_Store
+
+# Vercel (config locale du projet)
+.vercel/

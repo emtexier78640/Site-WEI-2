@@ -1,63 +1,36 @@
-// api/bde/validate.js — Vercel Serverless Function
-// Le BDE valide ou invalide le dossier d'un participant
-// Variables d'env : NOTION_TOKEN, NOTION_VALIDATIONS_DB_ID
+// api/bde/validate.js — POST { userId, validated } : le BDE valide / invalide un dossier
+import { json, methods, readBody, errorResponse } from '../_lib/http.js';
+import { requireAdmin } from '../_lib/auth.js';
+import { sql } from '../_lib/db.js';
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    if (req.method === 'OPTIONS') return res.status(200).end();
-    if (req.method !== 'POST') return res.status(405).json({ error: 'Méthode non autorisée' });
+    if (!methods(req, res, ['POST'])) return;
+    const admin = requireAdmin(req, res);
+    if (!admin) return;
+    const body = readBody(req, res);
+    if (!body) return;
 
-    const NOTION_TOKEN = process.env.NOTION_TOKEN;
-    const DB_ID = process.env.NOTION_VALIDATIONS_DB_ID;
-
-    if (!NOTION_TOKEN || !DB_ID) {
-        return res.status(500).json({ error: 'Config Notion manquante (NOTION_TOKEN / NOTION_VALIDATIONS_DB_ID)' });
-    }
-
-    const { username, validated } = req.body || {};
-    if (!username) return res.status(400).json({ error: 'username requis' });
-
-    const uClean = username.toLowerCase();
-    const headers = {
-        'Authorization': `Bearer ${NOTION_TOKEN}`,
-        'Content-Type': 'application/json',
-        'Notion-Version': '2022-06-28'
-    };
+    const userId = typeof body.userId === 'string' ? body.userId.trim() : '';
+    if (!UUID_RE.test(userId)) return json(res, 400, { error: 'userId invalide' });
+    if (typeof body.validated !== 'boolean') return json(res, 400, { error: 'validated doit être un booléen' });
+    const validated = body.validated;
 
     try {
-        // Vérifier si une entrée existe déjà pour cet utilisateur
-        const queryRes = await fetch(`https://api.notion.com/v1/databases/${DB_ID}/query`, {
-            method: 'POST',
-            headers,
-            body: JSON.stringify({
-                filter: { property: 'Username', rich_text: { equals: uClean } }
-            })
-        });
-        const queryData = await queryRes.json();
-        const existing = queryData.results?.[0];
+        const target = await sql`SELECT id FROM users WHERE id = ${userId} AND role = 'student'`;
+        if (target.length === 0) return json(res, 404, { error: 'Participant introuvable' });
 
-        const properties = {
-            'Titre': { title: [{ text: { content: uClean } }] },
-            'Username': { rich_text: [{ text: { content: uClean } }] },
-            'Validé': { checkbox: Boolean(validated) }
-        };
+        await sql`
+            INSERT INTO validations (user_id, validated, validated_by, validated_at)
+            VALUES (${userId}, ${validated}, ${admin.id}, now())
+            ON CONFLICT (user_id) DO UPDATE
+            SET validated = EXCLUDED.validated,
+                validated_by = EXCLUDED.validated_by,
+                validated_at = now()`;
 
-        if (existing) {
-            await fetch(`https://api.notion.com/v1/pages/${existing.id}`, {
-                method: 'PATCH', headers,
-                body: JSON.stringify({ properties })
-            });
-        } else {
-            await fetch('https://api.notion.com/v1/pages', {
-                method: 'POST', headers,
-                body: JSON.stringify({ parent: { database_id: DB_ID }, properties })
-            });
-        }
-
-        return res.status(200).json({ success: true, username: uClean, validated: Boolean(validated) });
+        return json(res, 200, { success: true, userId, validated });
     } catch (e) {
-        return res.status(500).json({ error: 'Erreur Notion: ' + e.message });
+        return errorResponse(res, e);
     }
 }
