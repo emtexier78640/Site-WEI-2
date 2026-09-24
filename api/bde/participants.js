@@ -1,198 +1,139 @@
-// api/bde/participants.js — Vercel Serverless Function
-// Renvoie tous les participants pour l'espace BDE
-// Lit depuis Notion (identifiants + questionnaire) + base Comments + base Validations
-// Variables d'env : NOTION_TOKEN, NOTION_COMMENTS_DB_ID, NOTION_VALIDATIONS_DB_ID
+// api/bde/participants.js — GET liste complète des participants (BDE uniquement)
+import { json, methods, errorResponse } from '../_lib/http.js';
+import { requireAdmin } from '../_lib/auth.js';
+import { sql } from '../_lib/db.js';
+
+const ORGA_AUTHOR = 'BDE MMI Wave (Orga WEI)';
+
+function iso(d) {
+    if (!d) return '';
+    const dt = d instanceof Date ? d : new Date(d);
+    return Number.isNaN(dt.getTime()) ? '' : dt.toISOString();
+}
+
+function dateOnly(d) {
+    if (!d) return '';
+    if (typeof d === 'string') return d.slice(0, 10);
+    if (!(d instanceof Date) || Number.isNaN(d.getTime())) return '';
+    // Colonne `date` parsée à minuit local par le driver : composants locaux, pas toISOString.
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${d.getFullYear()}-${mm}-${dd}`;
+}
+
+function humanSize(bytes) {
+    const n = Number(bytes) || 0;
+    if (n >= 1024 * 1024) return `${(n / (1024 * 1024)).toFixed(1).replace('.', ',')} Mo`;
+    if (n >= 1024) return `${Math.round(n / 1024)} Ko`;
+    return `${n} o`;
+}
+
+function serializeComment(c, authorsById) {
+    const a = authorsById.get(c.author_user_id);
+    const author = c.role === 'orga' || !a
+        ? ORGA_AUTHOR
+        : `${a.prenom || ''} ${a.nom || ''}`.trim() || a.username || ORGA_AUTHOR;
+    return { id: c.id, author, role: c.role, text: c.text, date: iso(c.created_at) };
+}
+
+function serializeDocument(d) {
+    return {
+        id: d.id,
+        name: d.original_name,
+        type: d.type,
+        label: d.label,
+        size: humanSize(d.size),
+        date: iso(d.created_at),
+        status: 'reçu',
+        note: d.note || ''
+    };
+}
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    if (req.method === 'OPTIONS') return res.status(200).end();
-    if (req.method !== 'GET') return res.status(405).json({ error: 'Méthode non autorisée' });
+    if (!methods(req, res, ['GET'])) return;
+    const admin = requireAdmin(req, res);
+    if (!admin) return;
 
-    const NOTION_TOKEN = process.env.NOTION_TOKEN;
-    const COMMENTS_DB = process.env.NOTION_COMMENTS_DB_ID;
-    const VALIDATIONS_DB = process.env.NOTION_VALIDATIONS_DB_ID;
-
-    // ── 1. Fetch identifiants depuis Notion (API non-officielle) ─────────────
-    let identList = [];
     try {
-        const r = await fetch('https://www.notion.so/api/v3/queryCollection', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0' },
-            body: JSON.stringify({
-                source: { type: 'collection', id: '3d12d719-3466-8024-aab4-000b300660b8', spaceId: '15424385-c5b0-4eb8-a516-f3fc954fc966' },
-                collectionView: { id: '3d12d719-3466-806f-b56e-000c16439ebf', spaceId: '15424385-c5b0-4eb8-a516-f3fc954fc966' },
-                loader: { type: 'reducer', reducers: { collection_group_results: { type: 'results', limit: 150 } }, sort: [], searchQuery: '', userTimeZone: 'Europe/Paris' }
-            })
+        const users = await sql`
+            SELECT id, username, prenom, nom, date_naissance, statut, mobilhome, voiture, covoiturage
+            FROM users WHERE role = 'student'
+            ORDER BY nom, prenom`;
+        const ids = users.map(u => u.id);
+        if (ids.length === 0) return json(res, 200, { success: true, participants: [] });
+
+        const [validations, documents, mobilhomes, covoits, comments] = await Promise.all([
+            sql`SELECT user_id, validated FROM validations WHERE user_id = ANY(${ids})`,
+            sql`SELECT id, user_id, type, label, original_name, note, size, created_at
+                FROM documents WHERE user_id = ANY(${ids}) ORDER BY created_at ASC`,
+            sql`SELECT user_id, membres, note, updated_at FROM mobilhome_prefs WHERE user_id = ANY(${ids})`,
+            sql`SELECT user_id, role, places_dispos, besoin, note, chauffeur_assigne, updated_at
+                FROM covoit WHERE user_id = ANY(${ids})`,
+            sql`SELECT id, user_id, author_user_id, role, text, created_at
+                FROM comments WHERE user_id = ANY(${ids}) ORDER BY created_at ASC`
+        ]);
+
+        // Authors of comments may include admins (not in `users`): fetch the missing ones.
+        const authorsById = new Map(users.map(u => [u.id, u]));
+        const missing = [...new Set(comments.map(c => c.author_user_id).filter(a => a && !authorsById.has(a)))];
+        if (missing.length) {
+            const extra = await sql`SELECT id, username, prenom, nom FROM users WHERE id = ANY(${missing})`;
+            for (const a of extra) authorsById.set(a.id, a);
+        }
+
+        const group = (rows) => {
+            const m = new Map();
+            for (const r of rows) {
+                if (!m.has(r.user_id)) m.set(r.user_id, []);
+                m.get(r.user_id).push(r);
+            }
+            return m;
+        };
+        const valByUser = new Map(validations.map(v => [v.user_id, Boolean(v.validated)]));
+        const docsByUser = group(documents);
+        const mhByUser = new Map(mobilhomes.map(m => [m.user_id, m]));
+        const covByUser = new Map(covoits.map(c => [c.user_id, c]));
+        const comByUser = group(comments);
+
+        const participants = users.map(u => {
+            const mh = mhByUser.get(u.id);
+            const cv = covByUser.get(u.id);
+            const thread = (comByUser.get(u.id) || []).map(c => serializeComment(c, authorsById));
+            const prenom = u.prenom || '';
+            const nom = u.nom || '';
+            return {
+                id: u.id,
+                username: u.username,
+                fullName: `${prenom} ${nom}`.trim(),
+                prenom,
+                nom,
+                statut: u.statut || '',
+                dateNaissance: dateOnly(u.date_naissance),
+                mobilhome: u.mobilhome || '',
+                voiture: u.voiture || '',
+                covoiturage: u.covoiturage || '',
+                isValidated: valByUser.get(u.id) === true,
+                documents: (docsByUser.get(u.id) || []).map(serializeDocument),
+                mobilhomePrefs: mh
+                    ? { membres: mh.membres || '', note: mh.note || '', submittedAt: iso(mh.updated_at) }
+                    : null,
+                covoitData: cv
+                    ? {
+                        role: cv.role,
+                        placesDispos: cv.places_dispos ?? null,
+                        besoin: cv.besoin ?? null,
+                        note: cv.note || '',
+                        chauffeurAssigne: cv.chauffeur_assigne || null,
+                        submittedAt: iso(cv.updated_at)
+                    }
+                    : null,
+                comments: thread,
+                lastComment: thread.length ? thread[thread.length - 1] : null
+            };
         });
-        const data = await r.json();
-        for (const [id, blk] of Object.entries(data?.recordMap?.block || {})) {
-            const v = blk?.value?.value;
-            if (v?.type === 'page' && v?.properties) {
-                const u = v.properties['title']?.[0]?.[0]?.trim();
-                if (u && u.toLowerCase() !== 'connexion') {
-                    identList.push({ id, username: u, raw: v });
-                }
-            }
-        }
-    } catch (e) { console.error('identList error:', e); }
 
-    // ── 2. Fetch questionnaire participants (API non-officielle) ─────────────
-    let partMap = {};
-    try {
-        const r = await fetch('https://www.notion.so/api/v3/queryCollection', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'User-Agent': 'Mozilla/5.0' },
-            body: JSON.stringify({
-                source: { type: 'collection', id: '3ca2d719-3466-80b4-9e93-000b570ca7f5', spaceId: '15424385-c5b0-4eb8-a516-f3fc954fc966' },
-                collectionView: { id: '3ca2d719-3466-806b-b0d9-000c214c5b3d', spaceId: '15424385-c5b0-4eb8-a516-f3fc954fc966' },
-                loader: { type: 'reducer', reducers: { collection_group_results: { type: 'results', limit: 150 } }, sort: [], searchQuery: '', userTimeZone: 'Europe/Paris' }
-            })
-        });
-        const data = await r.json();
-        for (const [id, blk] of Object.entries(data?.recordMap?.block || {})) {
-            const v = blk?.value?.value;
-            if (v?.type === 'page' && v?.properties) {
-                const nom = v.properties['title']?.[0]?.[0]?.trim() || '';
-                if (nom && nom.toLowerCase() !== 'participants') partMap[id] = v.properties;
-            }
-        }
-    } catch (e) { console.error('partMap error:', e); }
-
-    // ── 3. Fetch comments depuis Notion (API officielle) ─────────────────────
-    let allComments = {}; // { username: [{ author, role, text, date }] }
-    if (NOTION_TOKEN && COMMENTS_DB) {
-        try {
-            const r = await fetch(`https://api.notion.com/v1/databases/${COMMENTS_DB}/query`, {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${NOTION_TOKEN}`, 'Content-Type': 'application/json', 'Notion-Version': '2022-06-28' },
-                body: JSON.stringify({ sorts: [{ property: 'Date', direction: 'ascending' }] })
-            });
-            const data = await r.json();
-            for (const page of (data.results || [])) {
-                const uRaw = page.properties['Username']?.rich_text?.[0]?.plain_text || '';
-                const u = uRaw.toLowerCase();
-                if (!u) continue;
-                if (!allComments[u]) allComments[u] = [];
-                allComments[u].push({
-                    id: page.id,
-                    author: page.properties['Author']?.rich_text?.[0]?.plain_text || '',
-                    role: page.properties['Role']?.select?.name || 'student',
-                    text: page.properties['Text']?.rich_text?.[0]?.plain_text || '',
-                    date: page.properties['Date']?.date?.start || ''
-                });
-            }
-        } catch (e) { console.error('comments error:', e); }
+        return json(res, 200, { success: true, participants });
+    } catch (e) {
+        return errorResponse(res, e);
     }
-
-    // ── 4. Fetch validations depuis Notion (API officielle) ──────────────────
-    let validations = {}; // { username: true/false }
-    if (NOTION_TOKEN && VALIDATIONS_DB) {
-        try {
-            const r = await fetch(`https://api.notion.com/v1/databases/${VALIDATIONS_DB}/query`, {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${NOTION_TOKEN}`, 'Content-Type': 'application/json', 'Notion-Version': '2022-06-28' },
-                body: JSON.stringify({})
-            });
-            const data = await r.json();
-            for (const page of (data.results || [])) {
-                const u = (page.properties['Username']?.rich_text?.[0]?.plain_text || '').toLowerCase();
-                if (u) validations[u] = page.properties['Validé']?.checkbox === true;
-            }
-        } catch (e) { console.error('validations error:', e); }
-    }
-
-    // ── 5. Jointure identifiants + questionnaire ─────────────────────────────
-    const participants = [];
-    const seenUsernames = new Set();
-
-    for (const item of identList) {
-        const u = item.username;
-        const uLower = u.toLowerCase();
-        if (seenUsernames.has(uLower)) continue;
-        seenUsernames.add(uLower);
-
-        // Trouver les props questionnaire (relation Notion d'abord, puis matching nom)
-        let pProps = null;
-        const rel = item.raw.properties?.['wE`<'];
-        if (rel && Array.isArray(rel)) {
-            for (const sub of rel) {
-                if (sub?.[1]?.[0]?.[1] && partMap[sub[1][0][1]]) {
-                    pProps = partMap[sub[1][0][1]];
-                    break;
-                }
-            }
-        }
-        if (!pProps) {
-            for (const props of Object.values(partMap)) {
-                const nom = props['title']?.[0]?.[0]?.trim() || '';
-                const prenom = props['XnSG']?.[0]?.[0]?.trim() || '';
-                const comb = (prenom + nom).toLowerCase();
-                if (comb.includes(uLower) || uLower.includes(nom.toLowerCase())) {
-                    pProps = props;
-                    break;
-                }
-            }
-        }
-
-        // Validation Notion (champ questionnaire)
-        let notionValidated = false;
-        if (pProps) {
-            for (const [k, v] of Object.entries(pProps)) {
-                if (['title', 'XnSG', 'NuL{', 'uJq<', 'u]hf', 'UzhH', 'Iu>@', 'Hb{P', 'U:Hf'].includes(k)) continue;
-                const txt = (v?.[0]?.[0] || '').toString().trim().toLowerCase();
-                if (txt === 'oui' || txt === 'validé' || txt === 'valide' || txt === 'true') { notionValidated = true; break; }
-            }
-        }
-        if (!notionValidated && item.raw.properties) {
-            for (const [k, v] of Object.entries(item.raw.properties)) {
-                if (['title', 'wrz=', 'wE`<'].includes(k)) continue;
-                const txt = (v?.[0]?.[0] || '').toString().trim().toLowerCase();
-                if (txt === 'oui' || txt === 'validé' || txt === 'valide' || txt === 'true') { notionValidated = true; break; }
-            }
-        }
-
-        const localVal = validations[uLower] !== undefined ? validations[uLower] : null;
-        const isValidated = localVal !== null ? localVal : notionValidated;
-
-        const nom = pProps?.['title']?.[0]?.[0]?.trim() || '';
-        const prenom = pProps?.['XnSG']?.[0]?.[0]?.trim() || '';
-        const statut = pProps?.['uJq<']?.[0]?.[0]?.trim() || 'Inscrit(e)';
-        const mobilhome = pProps?.['u]hf']?.[0]?.[0]?.trim() || 'Non spécifié';
-        const voiture = pProps?.['UzhH']?.[0]?.[0]?.trim() || 'Non';
-        const covoiturage = pProps?.['Iu>@']?.[0]?.[0]?.trim() || 'Non';
-        const hasDecharge = Boolean(pProps?.['Hb{P']?.length);
-        const hasAttestation = Boolean(pProps?.['U:Hf']?.length);
-
-        let dateNaissance = '';
-        const dateRaw = pProps?.['NuL{'];
-        if (dateRaw?.[0]?.[1]?.[0]?.[1]?.start_date) dateNaissance = dateRaw[0][1][0][1].start_date;
-        else if (dateRaw?.[0]?.[0]) dateNaissance = dateRaw[0][0];
-
-        const comments = allComments[uLower] || [{
-            id: 'welcome-1',
-            author: 'BDE MMI Wave (Orga WEI)',
-            role: 'orga',
-            date: 'Message officiel',
-            text: "Bonjour ! Tes informations du questionnaire ont bien été synchronisées avec ton espace. Tu peux échanger avec l'équipe organisatrice ci-dessous."
-        }];
-        const lastComment = comments.length ? comments[comments.length - 1] : null;
-
-        participants.push({
-            username: u,
-            fullName: (prenom + ' ' + nom).trim() || u,
-            nom, prenom, statut, dateNaissance,
-            mobilhome, voiture, covoiturage,
-            isValidated, notionValidated,
-            hasDecharge, hasAttestation,
-            documents: [],
-            mobilhomePrefs: null,
-            covoitData: null,
-            comments,
-            lastComment
-        });
-    }
-
-    return res.status(200).json({ success: true, participants });
 }

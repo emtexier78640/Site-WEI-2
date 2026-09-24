@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>WEIGO • Espace BDE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            50: '#f5f3ff', 100: '#ede9fe', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9',
+                            pink: '#ec4899', orange: '#f97316', dark: '#0f172a'
+                        }
+                    },
+                    boxShadow: { 'glow': '0 0 40px -10px rgba(124, 58, 237, 0.35)' }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-brand { background: linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #f97316 100%); }
+        .gradient-text { background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .chip-active { background: #7c3aed; color: #fff; border-color: #7c3aed; }
+        .thread { max-height: 260px; overflow-y: auto; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen">
+
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-10">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-wrap items-center gap-4">
+            <div class="flex items-center gap-3 mr-auto">
+                <div class="w-10 h-10 rounded-xl gradient-brand shadow-glow"></div>
+                <div>
+                    <h1 class="text-xl font-extrabold leading-tight">WEIGO <span class="gradient-text">Espace BDE</span></h1>
+                    <p class="text-xs text-slate-500" id="count-label">Chargement…</p>
+                </div>
+            </div>
+            <input id="search" type="search" placeholder="Rechercher un nom ou un identifiant…" autocomplete="off"
+                   class="w-full sm:w-72 px-4 py-2 rounded-xl border border-slate-200 bg-slate-50 focus:outline-none focus:ring-2 focus:ring-brand-500 text-sm">
+            <div class="flex gap-2 text-sm" id="chips">
+                <button type="button" data-filter="all" class="chip chip-active px-3 py-1.5 rounded-full border border-slate-200 font-semibold">Tous</button>
+                <button type="button" data-filter="validated" class="chip px-3 py-1.5 rounded-full border border-slate-200 font-semibold">Validés</button>
+                <button type="button" data-filter="pending" class="chip px-3 py-1.5 rounded-full border border-slate-200 font-semibold">En attente</button>
+            </div>
+            <button type="button" id="logout" class="px-4 py-2 rounded-xl bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700">Déconnexion</button>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-6">
+        <div id="status" class="hidden mb-4 px-4 py-3 rounded-xl text-sm font-medium"></div>
+        <div id="list" class="grid gap-4 md:grid-cols-2"></div>
+        <p id="empty" class="hidden text-center text-slate-500 py-12">Aucun participant ne correspond.</p>
+    </main>
+
+    <template id="card-tpl">
+        <article class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 flex flex-col gap-4">
+            <div class="flex items-start justify-between gap-3">
+                <div class="min-w-0">
+                    <h2 class="text-lg font-bold truncate" data-f="fullName"></h2>
+                    <p class="text-xs text-slate-500 truncate">@<span data-f="username"></span></p>
+                </div>
+                <button type="button" data-action="validate" class="shrink-0 px-3 py-1.5 rounded-full text-xs font-bold border"></button>
+            </div>
+
+            <dl class="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+                <dt class="text-slate-500">Statut</dt><dd data-f="statut" class="font-medium"></dd>
+                <dt class="text-slate-500">Naissance</dt><dd data-f="dateNaissance" class="font-medium"></dd>
+                <dt class="text-slate-500">Mobil-home</dt><dd data-f="mobilhome" class="font-medium"></dd>
+                <dt class="text-slate-500">Voiture</dt><dd data-f="voiture" class="font-medium"></dd>
+                <dt class="text-slate-500">Covoiturage</dt><dd data-f="covoiturage" class="font-medium"></dd>
+            </dl>
+
+            <section>
+                <h3 class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Documents</h3>
+                <ul data-f="documents" class="text-sm space-y-1"></ul>
+            </section>
+
+            <section class="bg-slate-50 rounded-xl p-3">
+                <h3 class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Covoiturage</h3>
+                <p data-f="covoitSummary" class="text-sm mb-2"></p>
+                <form data-action="assign" class="flex gap-2">
+                    <input type="text" name="chauffeur" maxlength="100" placeholder="Chauffeur assigné"
+                           class="flex-1 px-3 py-1.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    <button type="submit" class="px-3 py-1.5 rounded-lg bg-brand-600 text-white text-sm font-semibold hover:bg-brand-700">Assigner</button>
+                </form>
+            </section>
+
+            <section class="bg-slate-50 rounded-xl p-3" data-f="mobilhomeSection">
+                <h3 class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Préférences mobil-home</h3>
+                <p data-f="mobilhomeSummary" class="text-sm"></p>
+            </section>
+
+            <details class="group">
+                <summary class="cursor-pointer text-sm font-semibold text-brand-700 select-none">
+                    Fil de discussion (<span data-f="commentCount"></span>)
+                </summary>
+                <div data-f="thread" class="thread mt-2 space-y-2"></div>
+                <form data-action="reply" class="mt-3 flex flex-col gap-2">
+                    <textarea name="text" rows="2" maxlength="2000" required placeholder="Répondre en tant que BDE…"
+                              class="w-full px-3 py-2 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                    <button type="submit" class="self-end px-3 py-1.5 rounded-lg bg-slate-900 text-white text-sm font-semibold hover:bg-slate-700">Envoyer</button>
+                </form>
+            </details>
+        </article>
+    </template>
+
+    <script>
+    (function () {
+        'use strict';
+        let participants = [];
+        let filter = 'all';
+        let query = '';
+
+        const $ = (sel, root) => (root || document).querySelector(sel);
+        const listEl = $('#list');
+        const emptyEl = $('#empty');
+        const statusEl = $('#status');
+        const countEl = $('#count-label');
+        const tpl = $('#card-tpl');
+
+        function escapeHtml(s) {
+            return String(s == null ? '' : s)
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        function showStatus(msg, kind) {
+            statusEl.textContent = msg;
+            statusEl.className = 'mb-4 px-4 py-3 rounded-xl text-sm font-medium ' +
+                (kind === 'error' ? 'bg-red-50 text-red-700 border border-red-200' : 'bg-green-50 text-green-700 border border-green-200');
+            clearTimeout(showStatus.t);
+            showStatus.t = setTimeout(() => statusEl.classList.add('hidden'), 4000);
+        }
+
+        async function api(path, opts) {
+            const o = Object.assign({ credentials: 'same-origin', headers: {} }, opts || {});
+            if (o.body && typeof o.body !== 'string') {
+                o.body = JSON.stringify(o.body);
+                o.headers['Content-Type'] = 'application/json';
+            }
+            const r = await fetch(path, o);
+            if (r.status === 401 || r.status === 403) { location.replace('/'); throw new Error('unauthorized'); }
+            let data = null;
+            try { data = await r.json(); } catch (_) { data = null; }
+            if (!r.ok) throw new Error((data && data.error) || 'Erreur serveur');
+            return data;
+        }
+
+        function fmtDate(iso) {
+            if (!iso) return '';
+            const d = new Date(iso);
+            if (Number.isNaN(d.getTime())) return iso;
+            return d.toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' });
+        }
+        function fmtDay(ymd) {
+            if (!ymd) return '—';
+            const [y, m, d] = ymd.split('-');
+            return (y && m && d) ? `${d}/${m}/${y}` : ymd;
+        }
+        const dash = v => (v && String(v).trim()) ? v : '—';
+
+        function setValidateBtn(btn, p) {
+            btn.textContent = p.isValidated ? 'Validé ✓' : 'En attente';
+            btn.title = p.isValidated ? 'Cliquer pour repasser en attente' : 'Cliquer pour valider le dossier';
+            btn.className = 'shrink-0 px-3 py-1.5 rounded-full text-xs font-bold border ' +
+                (p.isValidated ? 'bg-green-100 text-green-700 border-green-200' : 'bg-amber-50 text-amber-700 border-amber-200');
+        }
+
+        function renderThread(container, comments) {
+            container.replaceChildren();
+            if (!comments.length) {
+                const p = document.createElement('p');
+                p.className = 'text-xs text-slate-400';
+                p.textContent = 'Aucun message.';
+                container.appendChild(p);
+                return;
+            }
+            for (const c of comments) {
+                const div = document.createElement('div');
+                div.className = 'text-sm rounded-lg px-3 py-2 ' + (c.role === 'orga' ? 'bg-brand-50 border border-brand-100' : 'bg-white border border-slate-200');
+                const head = document.createElement('div');
+                head.className = 'flex justify-between gap-2 text-xs text-slate-500 mb-0.5';
+                const a = document.createElement('span'); a.className = 'font-semibold'; a.textContent = c.author || '';
+                const d = document.createElement('span'); d.textContent = fmtDate(c.date);
+                head.append(a, d);
+                const body = document.createElement('p'); body.className = 'whitespace-pre-wrap break-words'; body.textContent = c.text || '';
+                div.append(head, body);
+                container.appendChild(div);
+            }
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function renderCard(p) {
+            const node = tpl.content.firstElementChild.cloneNode(true);
+            node.dataset.id = p.id;
+            const f = name => node.querySelector(`[data-f="${name}"]`);
+            f('fullName').textContent = p.fullName || p.username;
+            f('username').textContent = p.username;
+            f('statut').textContent = dash(p.statut);
+            f('dateNaissance').textContent = fmtDay(p.dateNaissance);
+            f('mobilhome').textContent = dash(p.mobilhome);
+            f('voiture').textContent = dash(p.voiture);
+            f('covoiturage').textContent = dash(p.covoiturage);
+            setValidateBtn(node.querySelector('[data-action="validate"]'), p);
+
+            const docs = f('documents');
+            if (!p.documents.length) {
+                const li = document.createElement('li'); li.className = 'text-slate-400 text-xs'; li.textContent = 'Aucun document.'; docs.appendChild(li);
+            }
+            for (const d of p.documents) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = '/api/documents/' + encodeURIComponent(d.id);
+                a.target = '_blank'; a.rel = 'noopener';
+                a.className = 'text-brand-700 font-medium hover:underline';
+                a.textContent = (d.label || d.type || 'Document') + ' — ' + (d.name || '');
+                const meta = document.createElement('span');
+                meta.className = 'text-xs text-slate-500';
+                meta.textContent = ' (' + (d.size || '') + (d.date ? ', ' + fmtDate(d.date) : '') + ')';
+                li.append(a, meta);
+                if (d.note) { const n = document.createElement('p'); n.className = 'text-xs text-slate-500 italic'; n.textContent = d.note; li.appendChild(n); }
+                docs.appendChild(li);
+            }
+
+            const cv = p.covoitData;
+            f('covoitSummary').textContent = cv
+                ? `${cv.role === 'conducteur' ? 'Conducteur' : 'Passager'}` +
+                  (cv.role === 'conducteur' && cv.placesDispos != null ? ` · ${cv.placesDispos} place(s)` : '') +
+                  (cv.role === 'passager' && cv.besoin != null ? ` · besoin : ${cv.besoin}` : '') +
+                  (cv.note ? ` · ${cv.note}` : '') +
+                  (cv.chauffeurAssigne ? ` · Chauffeur : ${cv.chauffeurAssigne}` : ' · Aucun chauffeur assigné')
+                : 'Aucune fiche covoiturage.';
+            const assignForm = node.querySelector('[data-action="assign"]');
+            assignForm.chauffeur.value = (cv && cv.chauffeurAssigne) || '';
+
+            const mh = p.mobilhomePrefs;
+            f('mobilhomeSummary').textContent = mh
+                ? `Membres : ${dash(mh.membres)}${mh.note ? ' · ' + mh.note : ''}${mh.submittedAt ? ' (' + fmtDate(mh.submittedAt) + ')' : ''}`
+                : 'Aucune préférence envoyée.';
+
+            f('commentCount').textContent = String(p.comments.length);
+            renderThread(f('thread'), p.comments);
+            return node;
+        }
+
+        function matches(p) {
+            if (filter === 'validated' && !p.isValidated) return false;
+            if (filter === 'pending' && p.isValidated) return false;
+            if (!query) return true;
+            const hay = `${p.fullName} ${p.prenom} ${p.nom} ${p.username}`.toLowerCase();
+            return hay.includes(query);
+        }
+
+        function render() {
+            const visible = participants.filter(matches);
+            listEl.replaceChildren(...visible.map(renderCard));
+            emptyEl.classList.toggle('hidden', visible.length > 0);
+            const nbVal = participants.filter(p => p.isValidated).length;
+            countEl.textContent = `${participants.length} participant(s) · ${nbVal} validé(s) · ${participants.length - nbVal} en attente`;
+        }
+
+        function findP(el) {
+            const card = el.closest('article[data-id]');
+            return card ? participants.find(p => p.id === card.dataset.id) : null;
+        }
+
+        listEl.addEventListener('click', async (ev) => {
+            const btn = ev.target.closest('button[data-action="validate"]');
+            if (!btn) return;
+            const p = findP(btn); if (!p) return;
+            btn.disabled = true;
+            try {
+                const r = await api('/api/bde/validate', { method: 'POST', body: { userId: p.id, validated: !p.isValidated } });
+                p.isValidated = r.validated;
+                setValidateBtn(btn, p);
+                const nbVal = participants.filter(x => x.isValidated).length;
+                countEl.textContent = `${participants.length} participant(s) · ${nbVal} validé(s) · ${participants.length - nbVal} en attente`;
+                showStatus(`${p.fullName || p.username} : ${p.isValidated ? 'dossier validé' : 'remis en attente'}`);
+                if (filter !== 'all') render();
+            } catch (e) { showStatus(e.message, 'error'); }
+            finally { btn.disabled = false; }
+        });
+
+        listEl.addEventListener('submit', async (ev) => {
+            const form = ev.target;
+            if (!(form instanceof HTMLFormElement)) return;
+            ev.preventDefault();
+            const p = findP(form); if (!p) return;
+            const submit = form.querySelector('button[type="submit"]');
+            submit.disabled = true;
+            try {
+                if (form.dataset.action === 'assign') {
+                    const chauffeur = form.chauffeur.value.trim() || null;
+                    await api('/api/bde/covoit-assign', { method: 'POST', body: { userId: p.id, chauffeurAssigne: chauffeur } });
+                    if (p.covoitData) p.covoitData.chauffeurAssigne = chauffeur;
+                    showStatus(chauffeur ? `Chauffeur "${chauffeur}" assigné à ${p.fullName || p.username}` : 'Chauffeur retiré');
+                    render();
+                } else if (form.dataset.action === 'reply') {
+                    const text = form.text.value.trim();
+                    if (!text) return;
+                    const r = await api('/api/bde/reply', { method: 'POST', body: { userId: p.id, text } });
+                    p.comments = r.comments || [];
+                    p.lastComment = p.comments[p.comments.length - 1] || null;
+                    form.text.value = '';
+                    const card = form.closest('article');
+                    card.querySelector('[data-f="commentCount"]').textContent = String(p.comments.length);
+                    renderThread(card.querySelector('[data-f="thread"]'), p.comments);
+                    showStatus('Réponse envoyée');
+                }
+            } catch (e) { showStatus(e.message, 'error'); }
+            finally { submit.disabled = false; }
+        });
+
+        $('#search').addEventListener('input', (ev) => { query = ev.target.value.trim().toLowerCase(); render(); });
+        $('#chips').addEventListener('click', (ev) => {
+            const chip = ev.target.closest('button[data-filter]');
+            if (!chip) return;
+            filter = chip.dataset.filter;
+            document.querySelectorAll('#chips .chip').forEach(c => c.classList.toggle('chip-active', c === chip));
+            render();
+        });
+        $('#logout').addEventListener('click', async () => {
+            try { await fetch('/api/auth/logout', { method: 'POST', credentials: 'same-origin' }); } catch (_) {}
+            location.replace('/');
+        });
+
+        async function init() {
+            let me;
+            try {
+                const r = await fetch('/api/me', { credentials: 'same-origin' });
+                if (r.status !== 200) return location.replace('/');
+                me = (await r.json())?.user;
+            } catch (_) { return location.replace('/'); }
+            if (!me || me.role !== 'admin') return location.replace('/');
+            try {
+                const data = await api('/api/bde/participants');
+                participants = (data.participants || []).map(p => Object.assign({ documents: [], comments: [] }, p));
+                render();
+            } catch (e) {
+                countEl.textContent = 'Erreur de chargement';
+                showStatus(e.message, 'error');
+            }
+        }
+        init();
+    })();
+    </script>
+</body>
+</html>

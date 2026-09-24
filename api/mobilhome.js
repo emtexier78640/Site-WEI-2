@@ -1,107 +1,54 @@
-// api/mobilhome.js — Vercel Serverless Function
-// Stocke les préférences de mobilhome dans une base Notion
-// Variable d'env requise: NOTION_TOKEN, NOTION_MOBILHOME_DB_ID
+// api/mobilhome.js — préférences mobilhome du participant (Postgres)
+// L'utilisateur vient toujours du token de session.
+import { json, methods, readBody, errorResponse } from './_lib/http.js';
+import { requireUser } from './_lib/auth.js';
+import { sql } from './_lib/db.js';
+import { validate } from './_lib/validate.js';
+
+function serialize(row) {
+    if (!row) return null;
+    return {
+        membres: row.membres || '',
+        note: row.note || '',
+        submittedAt: row.updated_at instanceof Date ? row.updated_at.toISOString() : String(row.updated_at || '')
+    };
+}
+
+async function load(userId) {
+    const rows = await sql`
+        SELECT membres, note, updated_at FROM mobilhome_prefs WHERE user_id = ${userId} LIMIT 1`;
+    return serialize(rows[0]);
+}
 
 export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-    if (req.method === 'OPTIONS') return res.status(200).end();
+    if (!methods(req, res, ['GET', 'POST'])) return;
+    const me = requireUser(req, res);
+    if (!me) return;
 
-    const NOTION_TOKEN = process.env.NOTION_TOKEN;
-    const DB_ID = process.env.NOTION_MOBILHOME_DB_ID;
-
-    if (!NOTION_TOKEN || !DB_ID) {
-        return res.status(500).json({ error: 'Config Notion manquante (NOTION_TOKEN / NOTION_MOBILHOME_DB_ID)' });
-    }
-
-    const headers = {
-        'Authorization': `Bearer ${NOTION_TOKEN}`,
-        'Content-Type': 'application/json',
-        'Notion-Version': '2022-06-28'
-    };
-
-    // ── GET : récupérer les préférences d'un utilisateur ──────────────────────
-    if (req.method === 'GET') {
-        const user = req.query?.user || new URL(req.url, 'http://x').searchParams.get('user');
-        if (!user) return res.status(400).json({ error: 'Paramètre user manquant' });
-
-        try {
-            const queryRes = await fetch(`https://api.notion.com/v1/databases/${DB_ID}/query`, {
-                method: 'POST',
-                headers,
-                body: JSON.stringify({
-                    filter: {
-                        property: 'Username',
-                        rich_text: { equals: user.toLowerCase() }
-                    }
-                })
-            });
-            const data = await queryRes.json();
-            const page = data.results?.[0];
-            if (!page) return res.status(200).json({ success: true, prefs: null });
-
-            const prefs = {
-                membres: page.properties['Membres']?.rich_text?.[0]?.plain_text || '',
-                note: page.properties['Note']?.rich_text?.[0]?.plain_text || '',
-                submittedAt: page.properties['Date']?.date?.start || ''
-            };
-            return res.status(200).json({ success: true, prefs });
-        } catch (e) {
-            return res.status(500).json({ error: 'Erreur Notion: ' + e.message });
+    try {
+        if (req.method === 'GET') {
+            return json(res, 200, { success: true, prefs: await load(me.id) });
         }
+
+        const body = readBody(req, res);
+        if (!body) return;
+        const v = validate(body, {
+            membres: { type: 'string', max: 500 },
+            note: { type: 'string', max: 500 }
+        });
+        if (!v.ok) return json(res, 400, { error: v.error });
+
+        const membres = v.value.membres || '';
+        const note = v.value.note || '';
+        await sql`
+            INSERT INTO mobilhome_prefs (user_id, membres, note, updated_at)
+            VALUES (${me.id}, ${membres}, ${note}, now())
+            ON CONFLICT (user_id) DO UPDATE SET
+                membres = EXCLUDED.membres,
+                note = EXCLUDED.note,
+                updated_at = now()`;
+        return json(res, 200, { success: true, prefs: await load(me.id) });
+    } catch (e) {
+        return errorResponse(res, e);
     }
-
-    // ── POST : enregistrer / mettre à jour les préférences ────────────────────
-    if (req.method === 'POST') {
-        const { username, membres, note } = req.body || {};
-        if (!username) return res.status(400).json({ error: 'Username requis' });
-
-        const uClean = username.toLowerCase();
-        const now = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
-
-        try {
-            // Vérifier si une entrée existe déjà pour cet utilisateur
-            const queryRes = await fetch(`https://api.notion.com/v1/databases/${DB_ID}/query`, {
-                method: 'POST',
-                headers,
-                body: JSON.stringify({
-                    filter: { property: 'Username', rich_text: { equals: uClean } }
-                })
-            });
-            const queryData = await queryRes.json();
-            const existing = queryData.results?.[0];
-
-            const properties = {
-                'Username': { rich_text: [{ text: { content: uClean } }] },
-                'Membres': { rich_text: [{ text: { content: (membres || '').trim() } }] },
-                'Note': { rich_text: [{ text: { content: (note || '').trim() } }] },
-                'Date': { date: { start: now } },
-                'Titre': { title: [{ text: { content: uClean } }] }
-            };
-
-            if (existing) {
-                // Mettre à jour
-                await fetch(`https://api.notion.com/v1/pages/${existing.id}`, {
-                    method: 'PATCH',
-                    headers,
-                    body: JSON.stringify({ properties })
-                });
-            } else {
-                // Créer
-                await fetch('https://api.notion.com/v1/pages', {
-                    method: 'POST',
-                    headers,
-                    body: JSON.stringify({ parent: { database_id: DB_ID }, properties })
-                });
-            }
-
-            const prefs = { membres: (membres || '').trim(), note: (note || '').trim(), submittedAt: now };
-            return res.status(200).json({ success: true, prefs });
-        } catch (e) {
-            return res.status(500).json({ error: 'Erreur Notion: ' + e.message });
-        }
-    }
-
-    return res.status(405).json({ error: 'Méthode non autorisée' });
 }

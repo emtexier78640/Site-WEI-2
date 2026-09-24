@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Guide d'utilisation — Site WEIGO</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { box-sizing: border-box; }
+  html { font-size: 16px; }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: #0f172a; line-height: 1.55; margin: 0; }
+  h1 { font-size: 30px; margin: 0 0 6px; color: #6d28d9; page-break-after: avoid; }
+  h2 { font-size: 22px; margin: 0 0 14px; padding-bottom: 6px; border-bottom: 3px solid #ec4899; color: #0f172a; page-break-after: avoid; }
+  h3 { font-size: 17px; margin: 22px 0 8px; color: #6d28d9; page-break-after: avoid; }
+  p { margin: 0 0 10px; }
+  ol, ul { margin: 0 0 12px; padding-left: 24px; }
+  li { margin-bottom: 6px; }
+  ol.steps > li { margin-bottom: 10px; }
+  ol.steps > li::marker { font-weight: 700; color: #ec4899; }
+  section.page { page-break-before: always; }
+  figure { margin: 8px 0 14px; page-break-inside: avoid; }
+  figure img { width: auto; max-width: 100%; max-height: 115mm; margin: 0 auto; border: 1px solid #cbd5e1; border-radius: 8px; display: block; }
+  figure.narrow img { max-width: 420px; }
+  figure.medium img { max-width: 520px; max-height: 100mm; }
+  figure.tall { page-break-before: always; margin-top: 0; }
+  figure.tall img { max-height: 225mm; }
+  figcaption { font-size: 13px; color: #64748b; text-align: center; margin-top: 6px; }
+  .cover { height: 250mm; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+  .cover .logo { width: 110px; height: 110px; border-radius: 30px; margin: 0 auto 26px; background: linear-gradient(135deg, #7c3aed 0%, #ec4899 50%, #f97316 100%); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 60px; font-weight: 900; }
+  .cover h1 { font-size: 38px; }
+  .cover .sub { font-size: 22px; color: #334155; margin-bottom: 8px; }
+  .cover .date { color: #64748b; }
+  .box { border-radius: 10px; padding: 12px 16px; margin: 12px 0 16px; page-break-inside: avoid; }
+  .tip { background: #f5f3ff; border-left: 5px solid #7c3aed; }
+  .warn { background: #fffbeb; border-left: 5px solid #f59e0b; }
+  .danger { background: #fff1f2; border-left: 5px solid #e11d48; }
+  .box strong:first-child { display: block; margin-bottom: 4px; }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0 16px; font-size: 15px; }
+  th, td { border: 1px solid #cbd5e1; padding: 8px 10px; text-align: left; vertical-align: top; }
+  th { background: #f1f5f9; }
+  tr { page-break-inside: avoid; }
+  .num { display: inline-block; width: 24px; height: 24px; border-radius: 50%; background: #e11d48; color: #fff; font-weight: 900; text-align: center; line-height: 24px; font-size: 14px; margin-right: 6px; }
+  .legend li { list-style: none; margin-left: -24px; }
+  code { background: #f1f5f9; padding: 1px 5px; border-radius: 4px; font-size: 14px; }
+  .toc li { margin-bottom: 4px; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="logo">W</div>
+  <h1>Guide d'utilisation — Site WEIGO</h1>
+  <p class="sub">Pour l'équipe BDE</p>
+  <p class="date">Septembre 2026</p>
+</div>
+
+<section class="page">
+  <h2>Sommaire</h2>
+  <ol class="toc">
+    <li>Ce que fait le site en 3 phrases</li>
+    <li>Les deux espaces : participants et BDE</li>
+    <li>Se connecter en tant que BDE</li>
+    <li>La page admin, écran par écran</li>
+    <li>Ce que voient les participants</li>
+    <li>Questions fréquentes</li>
+    <li>Sécurité — les règles simples</li>
+    <li>En cas de problème</li>
+  </ol>
+
+  <div class="box tip">
+    <strong>Comment lire ce guide</strong>
+    Chaque action est décrite en étapes numérotées. La capture d'écran se trouve juste en dessous. Les éléments importants sont entourés en <span style="color:#e11d48;font-weight:700">rouge</span>.
+  </div>
+
+  <h2 style="margin-top:28px">1. Ce que fait le site en 3 phrases</h2>
+  <p>WEIGO est le site d'inscription au WEI. Les étudiants y créent un compte, remplissent leurs informations et déposent leurs documents.</p>
+  <p>Le BDE y vérifie les dossiers, valide les inscriptions, organise le covoiturage et répond aux questions.</p>
+  <p>Tout se fait en ligne, dans un navigateur. Il n'y a rien à installer.</p>
+
+  <h2 style="margin-top:28px">2. Les deux espaces</h2>
+  <table>
+    <tr><th style="width:50%">Espace participants</th><th>Espace BDE (admin)</th></tr>
+    <tr>
+      <td><strong>Adresse :</strong> l'adresse du site (ex. <code>https://weigo.vercel.app</code>)</td>
+      <td><strong>Adresse :</strong> l'adresse du site suivie de <code>/admin.html</code></td>
+    </tr>
+    <tr>
+      <td><strong>Qui :</strong> chaque étudiant, avec son propre compte.</td>
+      <td><strong>Qui :</strong> vous, avec le compte <code>bde</code>.</td>
+    </tr>
+    <tr>
+      <td>Un étudiant voit <strong>uniquement son dossier</strong> : ses infos, ses documents, ses messages avec le BDE.</td>
+      <td>Vous voyez <strong>tous les dossiers</strong>. Vous pouvez valider, ouvrir les documents, assigner un chauffeur et répondre.</td>
+    </tr>
+  </table>
+  <div class="box warn">
+    <strong>Bon à savoir</strong>
+    La page admin est invisible pour les étudiants. S'ils tapent son adresse, ils sont renvoyés vers l'accueil. Seul le compte <code>bde</code> peut l'ouvrir.
+  </div>
+</section>
+
+<section class="page">
+  <h2>3. Se connecter en tant que BDE</h2>
+  <ol class="steps">
+    <li>Ouvrez votre navigateur (Chrome, Safari, Firefox…).</li>
+    <li>Tapez l'adresse du site (ex. <code>https://weigo.vercel.app</code>). Vous arrivez sur la page d'accueil.
+      <figure><img src="guide-images/01-accueil.png" alt="Page d'accueil"><figcaption>La page d'accueil du site.</figcaption></figure>
+    </li>
+    <li>Cliquez sur le bouton <strong>« Mon Compte »</strong> en haut à droite.
+      <figure><img src="guide-images/02-bouton-mon-compte.png" alt="Bouton Mon Compte"><figcaption>Le bouton « Mon Compte », entouré en rouge.</figcaption></figure>
+    </li>
+    <li>Cliquez sur la carte <strong>« Connexion »</strong> (à gauche).
+      <figure><img src="guide-images/03-choix-connexion-inscription.png" alt="Choix Connexion ou Inscription"><figcaption>Choisissez « Connexion ».</figcaption></figure>
+    </li>
+    <li>Dans « Identifiant », tapez <code>bde</code>.</li>
+    <li>Dans « Mot de passe », tapez le mot de passe BDE (transmis séparément).</li>
+    <li>Cliquez sur le grand bouton <strong>« Se connecter &amp; Valider mon Pass »</strong>.
+      <figure class="medium"><img src="guide-images/12-connexion-bde.png" alt="Formulaire de connexion BDE"><figcaption>Le formulaire de connexion, rempli avec l'identifiant bde.</figcaption></figure>
+    </li>
+    <li>Descendez tout en bas de la page. Cliquez sur le bouton violet <strong>« Espace BDE (admin) »</strong>.
+      <figure><img src="guide-images/13-lien-espace-bde.png" alt="Bouton Espace BDE"><figcaption>Ce bouton n'apparaît que pour le compte bde.</figcaption></figure>
+    </li>
+    <li>Vous êtes sur la page admin. Bravo !</li>
+  </ol>
+  <div class="box tip">
+    <strong>Raccourci</strong>
+    Une fois connectée, vous pouvez aussi taper directement l'adresse du site suivie de <code>/admin.html</code>. La connexion reste active 7 jours sur le même navigateur.
+  </div>
+</section>
+
+<section class="page">
+  <h2>4. La page admin, écran par écran</h2>
+  <h3>4.1 La liste des participants</h3>
+  <p>Chaque participant a une <strong>fiche</strong> (un rectangle blanc). Les fiches sont affichées deux par ligne. En haut à gauche, un compteur indique le nombre de participants, de dossiers validés et de dossiers en attente.</p>
+  <figure><img src="guide-images/14-admin-liste.png" alt="Liste des participants"><figcaption>La page admin avec la liste des participants.</figcaption></figure>
+
+  <h3>4.2 Chercher et filtrer</h3>
+  <figure><img src="guide-images/15-admin-recherche-filtres.png" alt="Barre de recherche et filtres"><figcaption>En rouge : la recherche. En bleu : les filtres.</figcaption></figure>
+  <ol class="steps">
+    <li>Pour trouver quelqu'un : cliquez dans la case <strong>« Rechercher un nom ou un identifiant… »</strong> et tapez son prénom, son nom ou son identifiant. La liste se met à jour toute seule.</li>
+    <li>Pour voir seulement les dossiers validés : cliquez sur <strong>« Validés »</strong>.</li>
+    <li>Pour voir seulement les dossiers à traiter : cliquez sur <strong>« En attente »</strong>.</li>
+    <li>Pour tout revoir : cliquez sur <strong>« Tous »</strong>.</li>
+  </ol>
+</section>
+
+<section>
+  <h3>4.3 La fiche d'un participant, zone par zone</h3>
+  <figure class="tall"><img src="guide-images/16-admin-fiche-participant.png" alt="Fiche participant annotée"><figcaption>Une fiche participant, avec le fil de discussion ouvert.</figcaption></figure>
+  <ul class="legend">
+    <li><span class="num">1</span><strong>Nom et identifiant</strong> du participant.</li>
+    <li><span class="num">2</span><strong>Bouton de validation.</strong> Orange = « En attente ». Vert = « Validé ✓ ». Un clic change l'état.</li>
+    <li><span class="num">3</span><strong>Informations d'inscription :</strong> majeur ou mineur, date de naissance, souhait de mobil-home, voiture, covoiturage.</li>
+    <li><span class="num">4</span><strong>Documents</strong> envoyés par le participant. Un clic sur le nom ouvre le document.</li>
+    <li><span class="num">5</span><strong>Covoiturage :</strong> ce que le participant a déclaré, et la case pour assigner un chauffeur.</li>
+    <li><span class="num">6</span><strong>Préférences mobil-home :</strong> avec qui il souhaite être logé.</li>
+    <li><span class="num">7</span><strong>Fil de discussion :</strong> les messages échangés, et la zone pour répondre.</li>
+  </ul>
+  <div class="box tip">
+    <strong>Astuce</strong>
+    Le fil de discussion est replié par défaut. Cliquez sur <strong>« Fil de discussion (…) »</strong> pour l'ouvrir. Le chiffre entre parenthèses est le nombre de messages.
+  </div>
+</section>
+
+<section>
+  <h3>4.4 Valider un dossier (ou le remettre en attente)</h3>
+  <p>Un dossier se valide quand tout est en ordre : informations correctes et, pour un mineur, autorisation parentale et décharge présentes.</p>
+  <ol class="steps">
+    <li>Trouvez la fiche du participant (avec la recherche si besoin).</li>
+    <li>Cliquez sur le bouton orange <strong>« En attente »</strong>, en haut à droite de la fiche.
+      <figure><img src="guide-images/17-admin-bouton-valider.png" alt="Bouton En attente"><figcaption>Le bouton de validation, avant le clic.</figcaption></figure>
+    </li>
+    <li>Le bouton devient vert <strong>« Validé ✓ »</strong>. Un message vert de confirmation apparaît en haut de la page.
+      <figure><img src="guide-images/18-admin-dossier-valide.png" alt="Dossier validé"><figcaption>Après le clic : le dossier est validé et le compteur se met à jour.</figcaption></figure>
+    </li>
+    <li>Pour annuler : cliquez de nouveau sur le bouton vert. Il repasse en orange « En attente ».</li>
+  </ol>
+  <div class="box warn">
+    <strong>Ce que voit le participant</strong>
+    Dès la validation, son espace affiche « Dossier validé » et son Pass passe en vert. Pas besoin de le prévenir.
+  </div>
+</section>
+
+<section>
+  <h3>4.5 Voir un document</h3>
+  <ol class="steps">
+    <li>Dans la fiche, regardez la zone <strong>« Documents »</strong>.</li>
+    <li>Cliquez sur le nom du document (en violet).
+      <figure class="medium"><img src="guide-images/19-admin-voir-document.png" alt="Lien vers un document"><figcaption>Le lien du document, entouré en rouge.</figcaption></figure>
+    </li>
+    <li>Le document s'ouvre dans un nouvel onglet du navigateur. Fermez cet onglet pour revenir à la page admin.</li>
+  </ol>
+  <p>Si la zone indique <strong>« Aucun document. »</strong>, le participant n'a encore rien envoyé.</p>
+
+  <h3>4.6 Assigner un chauffeur</h3>
+  <p>Utile pour les participants <strong>sans voiture</strong>. Le nom que vous tapez s'affiche dans leur espace.</p>
+  <ol class="steps">
+    <li>Dans la fiche, allez dans la zone <strong>« Covoiturage »</strong>.</li>
+    <li>Cliquez dans la case <strong>« Chauffeur assigné »</strong> et tapez le nom du chauffeur (par exemple « Léa Martin »).</li>
+    <li>Cliquez sur <strong>« Assigner »</strong>.
+      <figure class="medium"><img src="guide-images/20-admin-assigner-chauffeur.png" alt="Assigner un chauffeur"><figcaption>La case du chauffeur et le bouton « Assigner ».</figcaption></figure>
+    </li>
+    <li>Un message vert confirme. Le nom apparaît dans le résumé « Chauffeur : … ».
+      <figure class="medium"><img src="guide-images/21-admin-chauffeur-assigne.png" alt="Chauffeur assigné"><figcaption>Le chauffeur est enregistré.</figcaption></figure>
+    </li>
+    <li>Pour retirer un chauffeur : videz la case et cliquez sur « Assigner ».</li>
+  </ol>
+</section>
+
+<section>
+  <h3>4.7 Répondre à un participant</h3>
+  <ol class="steps">
+    <li>Dans la fiche, cliquez sur <strong>« Fil de discussion (…) »</strong> pour l'ouvrir.</li>
+    <li>Lisez les messages. Ceux du participant sont sur fond blanc, ceux du BDE sur fond violet clair.</li>
+    <li>Cliquez dans la case <strong>« Répondre en tant que BDE… »</strong> et tapez votre réponse.</li>
+    <li>Cliquez sur <strong>« Envoyer »</strong>.
+      <figure class="medium"><img src="guide-images/22-admin-repondre.png" alt="Zone de réponse"><figcaption>Le fil de discussion et la zone de réponse.</figcaption></figure>
+    </li>
+    <li>Votre réponse apparaît dans le fil. Le participant la voit dans son espace avec l'étiquette <strong>« Staff »</strong>.
+      <figure class="medium"><img src="guide-images/23-admin-reponse-envoyee.png" alt="Réponse envoyée"><figcaption>La réponse du BDE est ajoutée au fil.</figcaption></figure>
+    </li>
+  </ol>
+  <div class="box tip">
+    <strong>Il n'y a pas de notification</strong>
+    Le participant ne reçoit pas d'e-mail. Il voit votre réponse quand il se connecte. Pour une urgence, contactez-le directement.
+  </div>
+
+  <h3>4.8 Se déconnecter</h3>
+  <ol class="steps">
+    <li>Cliquez sur le bouton noir <strong>« Déconnexion »</strong>, en haut à droite de la page admin.
+      <figure><img src="guide-images/24-admin-deconnexion.png" alt="Bouton Déconnexion"><figcaption>Le bouton « Déconnexion » de la page admin.</figcaption></figure>
+    </li>
+    <li>Vous revenez sur la page d'accueil. C'est terminé.</li>
+  </ol>
+</section>
+
+<section class="page">
+  <h2>5. Ce que voient les participants</h2>
+  <p>Cette partie vous aide à répondre aux questions des étudiants. Vous n'avez rien à faire ici, c'est pour comprendre leur côté.</p>
+
+  <h3>5.1 L'inscription</h3>
+  <p>Sur l'accueil, l'étudiant clique sur « Mon Compte », puis sur <strong>« Première inscription »</strong>. Il remplit ce formulaire :</p>
+  <figure class="medium"><img src="guide-images/04-formulaire-inscription.png" alt="Formulaire d'inscription"><figcaption>Le formulaire de création de compte.</figcaption></figure>
+  <ul>
+    <li>Prénom, nom, identifiant (lettres, chiffres, points ou tirets) et mot de passe (8 caractères minimum).</li>
+    <li>Date de naissance, majeur ou mineur.</li>
+    <li>Souhait de mobil-home (facultatif), voiture (oui/non), covoiturage (oui/non).</li>
+  </ul>
+  <p>Ensuite, il se connecte avec son identifiant et son mot de passe, comme vous.</p>
+</section>
+
+<section>
+  <h3>5.2 Le tableau de bord</h3>
+  <p>Après connexion, l'étudiant voit son espace personnel. En haut : son nom, son Pass et l'état de son dossier.</p>
+  <figure><img src="guide-images/05-tableau-de-bord.png" alt="Tableau de bord participant"><figcaption>Le tableau de bord d'un participant dont le dossier est en attente.</figcaption></figure>
+  <figure><img src="guide-images/25-tableau-de-bord-valide.png" alt="Tableau de bord validé"><figcaption>Le même tableau de bord une fois le dossier validé par le BDE.</figcaption></figure>
+</section>
+
+<section>
+  <h3>5.3 Les documents</h3>
+  <p>Seuls les <strong>mineurs</strong> ont des documents obligatoires : l'autorisation parentale signée et la décharge. Les majeurs voient un message « aucune pièce requise ».</p>
+  <p>Pour envoyer un document, l'étudiant choisit le type de pièce, sélectionne un fichier sur son ordinateur ou son téléphone, puis clique sur <strong>« Transmettre le document »</strong>.</p>
+  <figure><img src="guide-images/06-documents-avant-envoi.png" alt="Envoi d'un document"><figcaption>La zone d'envoi de document, prête à être transmise.</figcaption></figure>
+  <figure><img src="guide-images/07-documents-envoye.png" alt="Document envoyé"><figcaption>Après l'envoi : le document est listé et la case est cochée.</figcaption></figure>
+  <div class="box warn">
+    <strong>Formats acceptés</strong>
+    PDF, JPG ou PNG uniquement. 4 Mo maximum par fichier. 10 fichiers maximum par participant.
+  </div>
+</section>
+
+<section>
+  <h3>5.4 Les messages</h3>
+  <p>L'étudiant peut vous écrire depuis la zone « Communication avec l'équipe BDE ». Vos réponses apparaissent avec l'étiquette <strong>Staff</strong>.</p>
+  <figure class="medium"><img src="guide-images/08-messages.png" alt="Messages du participant"><figcaption>Le fil de messages, côté participant, après l'envoi d'une question.</figcaption></figure>
+  <figure class="medium"><img src="guide-images/26-messages-reponse-staff.png" alt="Réponse du staff"><figcaption>La réponse du BDE apparaît avec l'étiquette « Staff ».</figcaption></figure>
+</section>
+
+<section>
+  <h3>5.5 Le mobil-home</h3>
+  <p>L'étudiant indique avec qui il souhaite être logé, et une note facultative. Vous retrouvez ces informations dans sa fiche admin, zone « Préférences mobil-home ».</p>
+  <figure class="medium"><img src="guide-images/09-mobilhome.png" alt="Préférences mobil-home"><figcaption>Les préférences mobil-home, une fois enregistrées.</figcaption></figure>
+
+  <h3>5.6 Le covoiturage</h3>
+  <p>Trois cas possibles, selon les réponses données à l'inscription :</p>
+  <ul>
+    <li><strong>Voiture + covoiturage :</strong> l'étudiant est <em>conducteur</em>. Il indique son nombre de places libres.</li>
+    <li><strong>Pas de voiture :</strong> l'étudiant est <em>passager</em>. Il attend que vous lui assigniez un chauffeur (voir 4.6).</li>
+    <li><strong>Voiture sans covoiturage :</strong> rien à faire.</li>
+  </ul>
+  <figure class="medium"><img src="guide-images/10-covoiturage.png" alt="Section covoiturage"><figcaption>La section covoiturage d'un conducteur ayant déclaré 3 places.</figcaption></figure>
+
+  <h3>5.7 Se déconnecter</h3>
+  <p>Le bouton <strong>« Déconnexion »</strong> est tout en bas de l'espace personnel.</p>
+  <figure><img src="guide-images/11-deconnexion-participant.png" alt="Déconnexion participant"><figcaption>Le bouton « Déconnexion » côté participant.</figcaption></figure>
+</section>
+
+<section class="page">
+  <h2>6. Questions fréquentes</h2>
+
+  <h3>« J'ai oublié mon mot de passe. »</h3>
+  <p>Il n'existe pas encore de bouton « mot de passe oublié ». Le BDE <strong>ne peut pas voir</strong> les mots de passe, ni les changer.</p>
+  <p>Solution : le participant crée un <strong>nouveau compte</strong> avec un autre identifiant. Il vous indique l'ancien identifiant à ignorer. Vous ne validez que le nouveau dossier.</p>
+
+  <h3>« Mon fichier est refusé. »</h3>
+  <p>Vérifiez trois choses : le format (PDF, JPG ou PNG seulement), la taille (4 Mo maximum) et le nombre de fichiers (10 maximum). Une photo prise avec un téléphone est souvent trop lourde : demandez une version réduite ou un PDF.</p>
+
+  <h3>« Le site dit "Trop de tentatives". »</h3>
+  <p>Après trop d'essais de connexion ratés, le site bloque pendant <strong>15 minutes</strong> pour se protéger. Il faut simplement attendre, puis réessayer avec le bon mot de passe.</p>
+
+  <h3>« Je ne vois pas mon chauffeur. »</h3>
+  <p>Le nom du chauffeur n'apparaît que lorsque vous l'avez tapé dans la fiche admin et cliqué sur « Assigner » (voir 4.6). Les conducteurs, eux, ne voient pas de chauffeur : c'est normal.</p>
+
+  <h3>« Comment savoir s'il manque un document ? »</h3>
+  <p>Dans la fiche admin, la zone « Documents » liste ce qui a été envoyé. Pour un <strong>mineur</strong>, il faut voir deux lignes : « Autorisation parentale » et « Décharge ». S'il en manque une, ne validez pas et écrivez-lui dans le fil de discussion.</p>
+
+  <h3>« Le participant ne voit pas ma réponse. »</h3>
+  <p>Il doit se connecter à son espace : il n'y a pas d'e-mail automatique. Demandez-lui de recharger la page.</p>
+</section>
+
+<section class="page">
+  <h2>7. Sécurité — les règles simples</h2>
+  <ul>
+    <li><strong>Ne partagez jamais le mot de passe BDE.</strong> Pas par message, pas par e-mail, pas sur un post-it.</li>
+    <li><strong>Déconnectez-vous</strong> sur un ordinateur partagé ou public (bouton « Déconnexion », voir 4.8).</li>
+    <li>La page admin est <strong>invisible pour les étudiants</strong>. Ils ne peuvent ni la voir ni la modifier.</li>
+    <li>Les documents des participants ne sont visibles que par eux et par le compte BDE. Ne les téléchargez pas sur un ordinateur partagé.</li>
+    <li>Les données sont hébergées de façon sécurisée (Neon / Vercel). Vous n'avez rien à sauvegarder ni à gérer.</li>
+    <li>Si quelque chose semble anormal (page bizarre, compte inconnu, message étrange), ne touchez à rien et contactez : <strong>[Nom du responsable technique]</strong>.</li>
+  </ul>
+  <div class="box danger">
+    <strong>En cas de doute sur le mot de passe</strong>
+    Si vous pensez que le mot de passe BDE a été vu par quelqu'un d'autre, prévenez tout de suite le responsable technique. Lui seul peut le changer.
+  </div>
+
+  </section>
+<section class="page">
+  <h2>8. En cas de problème</h2>
+  <table>
+    <tr><th style="width:42%">Ce que vous voyez</th><th>Ce qu'il faut faire</th></tr>
+    <tr><td>La page admin renvoie à l'accueil.</td><td>Vous n'êtes pas connectée avec le compte <code>bde</code>. Reconnectez-vous (partie 3), puis réessayez.</td></tr>
+    <tr><td>« Identifiant ou mot de passe incorrect. »</td><td>Vérifiez les majuscules et les espaces. Le mot de passe est celui transmis séparément.</td></tr>
+    <tr><td>« Trop de tentatives ».</td><td>Attendez 15 minutes, puis réessayez.</td></tr>
+    <tr><td>La liste affiche « Erreur de chargement ».</td><td>Rechargez la page (touche F5 ou ⌘R). Si cela persiste, contactez le responsable technique.</td></tr>
+    <tr><td>Un document ne s'ouvre pas.</td><td>Vérifiez que votre navigateur n'a pas bloqué le nouvel onglet (« pop-up bloqué »). Autorisez-le et recliquez.</td></tr>
+    <tr><td>Un participant dit qu'il ne peut pas envoyer son fichier.</td><td>Format PDF/JPG/PNG, 4 Mo maximum. Demandez-lui un fichier plus léger.</td></tr>
+    <tr><td>Un participant apparaît deux fois.</td><td>Il a créé deux comptes (souvent après un mot de passe oublié). Ne validez que le bon, ignorez l'autre.</td></tr>
+    <tr><td>Le site ne répond plus du tout.</td><td>Contactez : <strong>[Nom du responsable technique]</strong>.</td></tr>
+  </table>
+</section>
+
+</body>
+</html>

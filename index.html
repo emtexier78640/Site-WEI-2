@@ -169,53 +169,32 @@
             <!-- ============================================== -->
             <section id="step-content-1" class="step-transition">
                 
-                <!-- Quick Info Bar above Form -->
-                <div class="mb-4 bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                    <div class="flex items-center gap-3 text-slate-600">
-                        <div class="w-8 h-8 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-sm">📝</div>
+                <!-- Explainer card -->
+                <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xl p-6 sm:p-8 mb-6 space-y-5">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center font-bold text-lg">📝</div>
                         <div>
-                            <span class="font-bold text-slate-900 block text-sm">Étape 1 sur 2 : Questionnaire participant</span>
-                            <span class="text-slate-500">Hébergement, transport, régimes alimentaires et contact d'urgence</span>
+                            <span class="font-black text-slate-900 block text-base">Étape 1 sur 2 : Comment ça marche ?</span>
+                            <span class="text-slate-500 text-xs">Inscription au WEI en quelques minutes, directement sur ce site</span>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <span class="bg-emerald-50 text-emerald-700 border border-emerald-200 font-semibold px-2.5 py-1 rounded-lg">~3 minutes</span>
-                        <a href="https://succinct-baseball-fca.notion.site/ebd//3ca2d7193466803caef1dbd00e764f99" target="_blank" rel="noopener noreferrer" class="text-purple-600 hover:text-purple-700 font-semibold hover:underline flex items-center gap-1">
-                            <span>Plein écran</span>
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Notion Embedded Form with Premium Frame -->
-                <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xl overflow-hidden mb-6">
-                    <div class="bg-slate-100/90 border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-                        <div class="flex items-center gap-2">
-                            <span class="w-3 h-3 rounded-full bg-red-400"></span>
-                            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
-                            <span class="w-3 h-3 rounded-full bg-green-400"></span>
-                            <span class="ml-2 text-xs font-semibold text-slate-600">Formulaire d'inscription WEIGO • MMI Lannion</span>
-                        </div>
-                        <span class="text-[11px] text-slate-400 font-medium">Connexion sécurisée</span>
-                    </div>
-
-                    <div class="relative w-full bg-white">
-                        <iframe 
-                            src="https://succinct-baseball-fca.notion.site/ebd//3ca2d7193466803caef1dbd00e764f99" 
-                            width="100%" 
-                            height="760" 
-                            frameborder="0" 
-                            marginheight="0" 
-                            marginwidth="0"
-                            class="w-full bg-white block"
-                            allowfullscreen>
-                            Chargement du formulaire WEIGO en cours...
-                        </iframe>
-                    </div>
-
-                    <div class="bg-slate-50 border-t border-slate-200 px-4 py-3 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-                        <span>🔒 Tes réponses sont directement transmises à l'équipe organisatrice du WEI.</span>
-                        <a href="https://succinct-baseball-fca.notion.site/ebd//3ca2d7193466803caef1dbd00e764f99" target="_blank" class="text-purple-600 font-medium hover:underline">Lien direct de secours</a>
+                    <ol class="space-y-3 text-sm text-slate-700">
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white flex items-center justify-center text-xs font-black flex-shrink-0">1</span>
+                            <span><strong>Prépare tes infos</strong> : prénom, nom, date de naissance, et si tu viens en voiture.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white flex items-center justify-center text-xs font-black flex-shrink-0">2</span>
+                            <span><strong>Crée ton compte</strong> à l’étape 2 : identifiant, mot de passe et quelques informations (statut, hébergement, voiture, covoiturage).</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-gradient-to-r from-purple-600 to-pink-500 text-white flex items-center justify-center text-xs font-black flex-shrink-0">3</span>
+                            <span><strong>Complète ton dossier</strong> depuis ton espace : documents (si mineur), groupe mobil-home, covoiturage et messages avec l’orga.</span>
+                        </li>
+                    </ol>
+                    <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-500 flex items-center gap-2">
+                        <span>🔒</span>
+                        <span>Tes informations sont stockées de manière sécurisée et ne sont accessibles qu’à l’équipe organisatrice du WEI.</span>
                     </div>
                 </div>
 
@@ -226,7 +205,7 @@
                             <span>Étape suivante</span>
                             <span>⚡</span>
                         </div>
-                        <h3 class="text-xl sm:text-2xl font-black">Tu as soumis le formulaire ?</h3>
+                        <h3 class="text-xl sm:text-2xl font-black">Prêt(e) à créer ton compte ?</h3>
                         <p class="text-white/90 text-xs sm:text-sm mt-1 max-w-lg">
                             Crée maintenant ton compte WEIGO pour obtenir ton badge participant, suivre ton dossier et recevoir les infos de départ.
                         </p>
@@ -240,7 +219,7 @@
             </section>
 
             <!-- ============================================== -->
-            <!-- STEP 2: CRÉATION DE COMPTE & CONNEXION NOTION -->
+            <!-- STEP 2: CRÉATION DE COMPTE & CONNEXION -->
             <!-- ============================================== -->
             <section id="step-content-2" class="step-transition hidden">
                 
@@ -313,7 +292,7 @@
                                     Première inscription
                                 </h3>
                                 <p class="text-xs text-slate-500 leading-relaxed">
-                                    Tu n'as pas encore d'identifiants ? Enregistre ici ton identifiant et mot de passe dans le tableau officiel pour pouvoir te connecter.
+                                    Tu n'as pas encore de compte ? Crée-le ici pour accéder à ton espace participant.
                                 </p>
                             </div>
                             <div class="pt-2 relative z-10">
@@ -327,7 +306,7 @@
                     </div>
                 </div>
 
-                <!-- SUB-VIEW A: PREMIÈRE INSCRIPTION (FORMULAIRE NOTION) -->
+                <!-- SUB-VIEW A: PREMIÈRE INSCRIPTION (FORMULAIRE NATIF) -->
                 <div id="auth-view-register" class="space-y-6 hidden">
                     
                     <!-- Back Button to Choice -->
@@ -338,55 +317,119 @@
                         </button>
                     </div>
                     
-                    <!-- Quick Info Bar above Form -->
-                    <div class="bg-white rounded-2xl p-4 border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-                        <div class="flex items-center gap-3 text-slate-600">
-                            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-500 text-white flex items-center justify-center font-bold text-sm shadow-sm">📝</div>
+                    <div class="max-w-xl mx-auto bg-white rounded-3xl border border-slate-200 shadow-xl p-6 sm:p-9">
+
+                        <div class="text-center mb-8">
+                            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-pink-500 to-orange-400 text-white flex items-center justify-center text-xl font-bold mx-auto mb-3 shadow-md">
+                                📝
+                            </div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-pink-600 bg-pink-50 px-3 py-1 rounded-full">Première inscription</span>
+                            <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Crée ton compte WEIGO</h2>
+                            <p class="text-slate-500 text-xs sm:text-sm mt-1">
+                                Renseigne tes identifiants et quelques informations.
+                            </p>
+                        </div>
+
+                        <div id="register-feedback" class="hidden mb-4 p-3.5 rounded-xl text-xs font-semibold"></div>
+
+                        <form id="form-register" onsubmit="handleRegisterSubmit(event)" class="space-y-4" autocomplete="on">
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="reg-prenom" class="block text-xs font-bold text-slate-700 mb-1">Prénom</label>
+                                    <input type="text" id="reg-prenom" name="given-name" autocomplete="given-name" required maxlength="60" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
+                                </div>
+                                <div>
+                                    <label for="reg-nom" class="block text-xs font-bold text-slate-700 mb-1">Nom</label>
+                                    <input type="text" id="reg-nom" name="family-name" autocomplete="family-name" required maxlength="60" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
+                                </div>
+                            </div>
+
                             <div>
-                                <span class="font-bold text-slate-900 block text-sm">Première inscription : Création de tes identifiants</span>
-                                <span class="text-slate-500">Renseigne ton identifiant et mot de passe ci-dessous pour les enregistrer dans la base</span>
+                                <label for="reg-username" class="block text-xs font-bold text-slate-700 mb-1">Identifiant</label>
+                                <div class="relative">
+                                    <input type="text" id="reg-username" name="username" autocomplete="username" required minlength="3" maxlength="32" pattern="[a-zA-Z0-9._-]{3,32}" placeholder="ex : emma.texier" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
+                                    <span class="absolute left-3.5 top-3 text-slate-400 text-sm">👤</span>
+                                </div>
+                                <span class="text-[11px] text-slate-400 mt-1 block">3 à 32 caractères : lettres, chiffres, point, tiret ou underscore.</span>
                             </div>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="bg-purple-50 text-purple-700 border border-purple-200 font-semibold px-2.5 py-1 rounded-lg">Officiel</span>
-                            <a href="https://succinct-baseball-fca.notion.site/ebd//3d42d719346680499d26c21c901e219d" target="_blank" rel="noopener noreferrer" class="text-purple-600 hover:text-purple-700 font-semibold hover:underline flex items-center gap-1">
-                                <span>Plein écran</span>
-                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </a>
-                        </div>
-                    </div>
 
-                    <!-- Notion Embedded Form Container requested by user -->
-                    <div class="bg-white rounded-2xl sm:rounded-3xl border border-slate-200 shadow-xl overflow-hidden">
-                        <div class="bg-slate-100/90 border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-                            <div class="flex items-center gap-2">
-                                <span class="w-3 h-3 rounded-full bg-red-400"></span>
-                                <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
-                                <span class="w-3 h-3 rounded-full bg-green-400"></span>
-                                <span class="ml-2 text-xs font-semibold text-slate-600">Formulaire de création d'identifiants • WEIGO</span>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="reg-password" class="block text-xs font-bold text-slate-700 mb-1">Mot de passe</label>
+                                    <div class="relative">
+                                        <input type="password" id="reg-password" name="new-password" autocomplete="new-password" required minlength="8" maxlength="128" placeholder="8 caractères minimum" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
+                                        <span class="absolute left-3.5 top-3 text-slate-400 text-sm">🔒</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="reg-password-confirm" class="block text-xs font-bold text-slate-700 mb-1">Confirme le mot de passe</label>
+                                    <div class="relative">
+                                        <input type="password" id="reg-password-confirm" autocomplete="new-password" required minlength="8" maxlength="128" placeholder="••••••••" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
+                                        <span class="absolute left-3.5 top-3 text-slate-400 text-sm">🔒</span>
+                                    </div>
+                                </div>
                             </div>
-                            <span class="text-[11px] text-slate-400 font-medium">Connexion sécurisée</span>
-                        </div>
 
-                        <div class="relative w-full bg-white">
-                            <iframe 
-                                src="https://succinct-baseball-fca.notion.site/ebd//3d42d719346680499d26c21c901e219d" 
-                                width="100%" 
-                                height="600" 
-                                frameborder="0" 
-                                allowfullscreen
-                                class="w-full bg-white block">
-                                Chargement du formulaire de création d'identifiants...
-                            </iframe>
-                        </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="reg-date-naissance" class="block text-xs font-bold text-slate-700 mb-1">Date de naissance</label>
+                                    <input type="date" id="reg-date-naissance" name="bday" autocomplete="bday" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-bold text-slate-700 mb-1">Statut</span>
+                                    <div class="flex items-center gap-2 pt-1.5">
+                                        <label class="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold cursor-pointer has-[:checked]:border-purple-500 has-[:checked]:bg-purple-50">
+                                            <input type="radio" name="reg-statut" value="Majeur" required class="accent-purple-600"> Majeur(e)
+                                        </label>
+                                        <label class="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold cursor-pointer has-[:checked]:border-purple-500 has-[:checked]:bg-purple-50">
+                                            <input type="radio" name="reg-statut" value="Mineur" class="accent-purple-600"> Mineur(e)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="bg-slate-50 border-t border-slate-200 px-4 py-3 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-                            <span>🔒 Les identifiants saisis sont automatiquement enregistrés dans le tableau Notion du BDE.</span>
-                            <button onclick="switchAuthMode('login')" class="text-purple-600 font-semibold hover:underline flex items-center gap-1">
-                                <span>Déjà soumis ? Se connecter</span>
-                                <span>→</span>
-                            </button>
-                        </div>
+                            <div>
+                                <label for="reg-mobilhome" class="block text-xs font-bold text-slate-700 mb-1">Mobil-home souhaité <span class="font-normal text-slate-400">(facultatif)</span></label>
+                                <input type="text" id="reg-mobilhome" maxlength="200" placeholder="Ex : avec Léa et Tom, ou « pas de préférence »" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <span class="block text-xs font-bold text-slate-700 mb-1">Tu viens en voiture ?</span>
+                                    <div class="flex items-center gap-2 pt-1.5">
+                                        <label class="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold cursor-pointer has-[:checked]:border-purple-500 has-[:checked]:bg-purple-50">
+                                            <input type="radio" name="reg-voiture" value="Oui" required class="accent-purple-600"> Oui
+                                        </label>
+                                        <label class="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold cursor-pointer has-[:checked]:border-purple-500 has-[:checked]:bg-purple-50">
+                                            <input type="radio" name="reg-voiture" value="Non" class="accent-purple-600"> Non
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="block text-xs font-bold text-slate-700 mb-1">Intéressé(e) par le covoiturage ?</span>
+                                    <div class="flex items-center gap-2 pt-1.5">
+                                        <label class="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold cursor-pointer has-[:checked]:border-purple-500 has-[:checked]:bg-purple-50">
+                                            <input type="radio" name="reg-covoiturage" value="Oui" required class="accent-purple-600"> Oui
+                                        </label>
+                                        <label class="flex-1 flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl border border-slate-200 text-sm font-semibold cursor-pointer has-[:checked]:border-purple-500 has-[:checked]:bg-purple-50">
+                                            <input type="radio" name="reg-covoiturage" value="Non" class="accent-purple-600"> Non
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-3">
+                                <button type="submit" id="btn-register-submit" class="w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-pink-500 to-orange-400 text-white font-extrabold text-sm py-3.5 rounded-xl shadow-lg hover:shadow-xl hover:brightness-105 active:scale-95 transition-all">
+                                    <span id="btn-register-text">Créer mon compte</span>
+                                    <span id="btn-register-spinner" class="hidden animate-spin">⏳</span>
+                                </button>
+                            </div>
+
+                            <p class="text-center text-[11px] text-slate-400 pt-2">
+                                Déjà un compte ? <a href="javascript:void(0)" onclick="switchAuthMode('login')" class="text-purple-600 font-semibold hover:underline">Se connecter</a>
+                            </p>
+                        </form>
                     </div>
 
                     <!-- Banner to switch to Login -->
@@ -396,9 +439,9 @@
                                 <span>Étape suivante</span>
                                 <span>🚀</span>
                             </div>
-                            <h3 class="text-xl sm:text-2xl font-black">Tu as validé tes identifiants sur Notion ?</h3>
+                            <h3 class="text-xl sm:text-2xl font-black">Tu as déjà un compte ?</h3>
                             <p class="text-white/90 text-xs sm:text-sm mt-1 max-w-lg">
-                                Connecte-toi maintenant pour vérifier tes identifiants dans la base et obtenir ton Pass officiel WEIGO.
+                                Connecte-toi avec tes identifiants pour retrouver ton espace et ton Pass officiel WEIGO.
                             </p>
                         </div>
                         <button onclick="switchAuthMode('login')" class="w-full sm:w-auto flex-shrink-0 inline-flex items-center justify-center gap-3 bg-white text-slate-900 hover:bg-slate-100 px-7 py-4 rounded-xl font-extrabold text-sm sm:text-base shadow-lg hover:scale-105 active:scale-95 transition-all">
@@ -409,7 +452,7 @@
 
                 </div>
 
-                <!-- SUB-VIEW B: CONNEXION (VÉRIFICATION EN DIRECT DANS LA BASE NOTION) -->
+                <!-- SUB-VIEW B: CONNEXION -->
                 <div id="auth-view-login" class="hidden space-y-4">
                     
                     <div class="max-w-xl mx-auto mb-2">
@@ -428,7 +471,7 @@
                             <span class="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-3 py-1 rounded-full">Authentification WEIGO</span>
                             <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-2">Connexion à ton espace</h2>
                             <p class="text-slate-500 text-xs sm:text-sm mt-1">
-                                Vérification instantanée de tes 2 entrées (Identifiant & Mot de passe) dans le tableau Notion officiel.
+                                Connecte-toi avec l’identifiant et le mot de passe choisis lors de ton inscription.
                             </p>
                         </div>
 
@@ -441,20 +484,18 @@
                             <div>
                                 <label for="login-username" class="block text-xs font-bold text-slate-700 mb-1">Identifiant</label>
                                 <div class="relative">
-                                    <input type="text" id="login-username" required placeholder="Ton identifiant créé sur Notion" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
+                                    <input type="text" id="login-username" required placeholder="Ton identifiant" autocomplete="username" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
                                     <span class="absolute left-3.5 top-3 text-slate-400 text-sm">👤</span>
                                 </div>
-                                <span class="text-[11px] text-slate-400 mt-1 block">Correspond à la colonne « Identifiant » de la table.</span>
                             </div>
 
                             <!-- Mot de passe -->
                             <div>
                                 <label for="login-password" class="block text-xs font-bold text-slate-700 mb-1">Mot de passe</label>
                                 <div class="relative">
-                                    <input type="password" id="login-password" required placeholder="••••••••" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
+                                    <input type="password" id="login-password" required autocomplete="current-password" placeholder="••••••••" class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-sm">
                                     <span class="absolute left-3.5 top-3 text-slate-400 text-sm">🔒</span>
                                 </div>
-                                <span class="text-[11px] text-slate-400 mt-1 block">Correspond à la colonne « Mots de passe » de la table.</span>
                             </div>
 
                             <!-- Submit Button -->
@@ -529,20 +570,16 @@
                                 </div>
                             </div>
 
-                            <!-- Synchronized Questionnaire Information from Notion -->
+                            <!-- Registration information -->
                             <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-4">
                                 <div class="flex items-center justify-between pb-3 border-b border-slate-200/80">
                                     <div class="flex items-center gap-2.5">
                                         <div class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">📋</div>
                                         <div>
                                             <h4 class="font-extrabold text-slate-900 text-sm">Tes informations d'inscription</h4>
-                                            <p class="text-[11px] text-slate-500">Synchronisées en direct depuis la base des participants Notion</p>
+                                            <p class="text-[11px] text-slate-500">Renseignées lors de ton inscription</p>
                                         </div>
                                     </div>
-                                    <a id="dash-notion-link" href="#" target="_blank" rel="noopener noreferrer" class="hidden text-xs font-semibold text-purple-600 hover:text-purple-700 hover:underline inline-flex items-center gap-1">
-                                        <span>Fiche Notion</span>
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                                    </a>
                                 </div>
 
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs" id="dash-info-grid">
@@ -603,36 +640,32 @@
                                     </div>
                                 </div>
 
-                                <!-- Formulaire Notion Mobilhome -->
-                                <div class="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
-                                    <div class="bg-slate-100/90 border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-                                        <div class="flex items-center gap-2">
-                                            <span class="w-3 h-3 rounded-full bg-red-400"></span>
-                                            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
-                                            <span class="w-3 h-3 rounded-full bg-green-400"></span>
-                                            <span class="ml-2 text-xs font-semibold text-slate-600">Formulaire Mobilhôme • WEIGO</span>
-                                        </div>
-                                        <a href="https://succinct-baseball-fca.notion.site/ebd//3da2d7193466805288eed15c646c9baf" target="_blank" rel="noopener noreferrer" class="text-purple-600 hover:text-purple-700 font-semibold hover:underline flex items-center gap-1 text-xs">
-                                            <span>Plein écran</span>
-                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                                        </a>
+                                <!-- Formulaire Mobilhome -->
+                                <div id="mobilhome-feedback" class="hidden"></div>
+                                <div id="mobilhome-saved-display" class="hidden p-4 rounded-xl bg-emerald-50/60 border border-emerald-200 space-y-1.5 text-xs">
+                                    <div class="flex items-center justify-between">
+                                        <span class="font-black text-emerald-800 flex items-center gap-1.5">✓ Préférences enregistrées</span>
+                                        <button type="button" onclick="editMobilhomePrefs()" class="text-[10px] font-bold text-emerald-700 underline underline-offset-2 hover:text-emerald-900">Modifier</button>
                                     </div>
-                                    <div class="relative w-full bg-white">
-                                        <iframe
-                                            src="https://succinct-baseball-fca.notion.site/ebd//3da2d7193466805288eed15c646c9baf"
-                                            width="100%"
-                                            height="600"
-                                            frameborder="0"
-                                            allowfullscreen
-                                            class="w-full bg-white block">
-                                            Chargement du formulaire mobilhôme...
-                                        </iframe>
-                                    </div>
-                                    <div class="bg-slate-50 border-t border-slate-200 px-4 py-3 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-                                        <span>🔒 Tes préférences sont transmises directement à l'équipe organisatrice.</span>
-                                        <a href="https://succinct-baseball-fca.notion.site/ebd//3da2d7193466805288eed15c646c9baf" target="_blank" class="text-purple-600 font-medium hover:underline">Lien direct de secours</a>
-                                    </div>
+                                    <p id="mobilhome-saved-membres" class="text-slate-700 font-semibold"></p>
+                                    <p id="mobilhome-saved-note" class="text-slate-500 italic"></p>
+                                    <p id="mobilhome-saved-date" class="text-[10px] text-slate-400"></p>
                                 </div>
+                                <form id="form-mobilhome-prefs" onsubmit="handleMobilhomeSave(event)" class="space-y-3">
+                                    <div>
+                                        <label for="input-mobilhome-membres" class="block text-[10px] font-extrabold uppercase text-slate-500 mb-1.5">Personnes avec qui tu souhaites être logé(e)</label>
+                                        <textarea id="input-mobilhome-membres" rows="3" maxlength="500" required placeholder="Ex : Léa Martin, Tom Dupont, Inès Roux..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white shadow-sm transition-all placeholder:text-slate-400"></textarea>
+                                    </div>
+                                    <div>
+                                        <label for="input-mobilhome-note" class="block text-[10px] font-extrabold uppercase text-slate-500 mb-1.5">Note <span class="font-normal normal-case text-slate-400">(facultatif)</span></label>
+                                        <input type="text" id="input-mobilhome-note" maxlength="500" placeholder="Ex : Nous sommes tous en MMI 1" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs font-medium text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:bg-white shadow-sm transition-all placeholder:text-slate-400">
+                                    </div>
+                                    <button type="submit" id="btn-save-mobilhome" class="w-full sm:w-auto px-6 py-2.5 bg-gradient-to-r from-teal-600 to-emerald-500 hover:from-teal-700 hover:to-emerald-600 text-white font-black text-xs rounded-xl shadow-md active:scale-95 transition-all flex items-center gap-2">
+                                        <span id="mobilhome-spinner" class="hidden animate-spin">⏳</span>
+                                        <span id="mobilhome-btn-text">Enregistrer mes préférences</span>
+                                        <span>🏕️</span>
+                                    </button>
+                                </form>
                             </div>
 
                             <!-- SECTION: COVOITURAGE -->
@@ -650,36 +683,9 @@
                                     </span>
                                 </div>
 
-                                <!-- Formulaire Notion Covoiturage -->
-                                <div class="bg-white rounded-2xl border border-slate-200 shadow-xl overflow-hidden">
-                                    <div class="bg-slate-100/90 border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-                                        <div class="flex items-center gap-2">
-                                            <span class="w-3 h-3 rounded-full bg-red-400"></span>
-                                            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
-                                            <span class="w-3 h-3 rounded-full bg-green-400"></span>
-                                            <span class="ml-2 text-xs font-semibold text-slate-600">Formulaire Covoiturage • WEIGO</span>
-                                        </div>
-                                        <a href="https://succinct-baseball-fca.notion.site/ebd//3db2d71934668047b682f1d71535775d" target="_blank" rel="noopener noreferrer" class="text-purple-600 hover:text-purple-700 font-semibold hover:underline flex items-center gap-1 text-xs">
-                                            <span>Plein écran</span>
-                                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                                        </a>
-                                    </div>
-                                    <div class="relative w-full bg-white">
-                                        <iframe
-                                            src="https://succinct-baseball-fca.notion.site/ebd//3db2d71934668047b682f1d71535775d"
-                                            width="100%"
-                                            height="600"
-                                            frameborder="0"
-                                            allowfullscreen
-                                            class="w-full bg-white block">
-                                            Chargement du formulaire covoiturage...
-                                        </iframe>
-                                    </div>
-                                    <div class="bg-slate-50 border-t border-slate-200 px-4 py-3 text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-                                        <span>🔒 Tes infos de covoiturage sont transmises directement à l'équipe organisatrice.</span>
-                                        <a href="https://succinct-baseball-fca.notion.site/ebd//3db2d71934668047b682f1d71535775d" target="_blank" class="text-purple-600 font-medium hover:underline">Lien direct de secours</a>
-                                    </div>
-                                </div>
+                                <!-- Contenu covoiturage (rendu dynamiquement) -->
+                                <div id="covoit-feedback" class="hidden"></div>
+                                <div id="covoit-dynamic-content" class="space-y-3"></div>
                             </div>
 
                             <!-- SECTION: PIÈCES JUSTIFICATIVES & DOCUMENTS MANQUANTS -->
@@ -715,7 +721,7 @@
                                             <span class="w-6 h-6 rounded-lg bg-purple-600 text-white flex items-center justify-center text-xs font-black shadow-sm">+</span>
                                             <h5 class="text-xs sm:text-sm font-black text-slate-900">Ajouter un document manquant</h5>
                                         </div>
-                                        <span class="text-[10px] font-bold text-purple-700 bg-purple-100/70 px-2 py-0.5 rounded-md">Format PDF, PNG, JPG (max 5 Mo)</span>
+                                        <span class="text-[10px] font-bold text-purple-700 bg-purple-100/70 px-2 py-0.5 rounded-md">Format PDF, PNG, JPG (max 4 Mo)</span>
                                     </div>
 
                                     <form id="form-upload-document" onsubmit="handleDocumentUpload(event)" class="space-y-3">
@@ -731,7 +737,7 @@
 
                                             <div>
                                                 <label for="input-doc-file" class="block text-[10px] font-extrabold uppercase text-slate-500 mb-1">Sélectionner le fichier</label>
-                                                <input type="file" id="input-doc-file" required accept=".pdf,.png,.jpg,.jpeg,.webp" class="w-full text-xs text-slate-600 file:mr-2.5 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[11px] file:font-bold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer bg-white rounded-xl border border-slate-200 p-1 shadow-sm">
+                                                <input type="file" id="input-doc-file" required accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/png,image/jpeg" class="w-full text-xs text-slate-600 file:mr-2.5 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-[11px] file:font-bold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer bg-white rounded-xl border border-slate-200 p-1 shadow-sm">
                                             </div>
                                         </div>
 
@@ -814,68 +820,14 @@
                                 </form>
                             </div>
 
-                            <!-- SECTION: CONTACT -->
-                            <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-4">
-                                <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-                                    <div class="flex items-center gap-2.5">
-                                        <div class="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-sm">📞</div>
-                                        <div>
-                                            <h4 class="font-extrabold text-slate-900 text-sm">Contact & Urgences</h4>
-                                            <p class="text-[11px] text-slate-500">Joindre l'équipe organisatrice du WEI</p>
-                                        </div>
-                                    </div>
-                                    <span class="text-[10px] font-bold bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-full">MMI Wave BDE</span>
-                                </div>
-
-                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                                    <!-- Responsable général -->
-                                    <a href="mailto:bde.mmi@iut.fr" class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-indigo-300 hover:bg-indigo-50/40 transition-all group">
-                                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-500 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">✉️</div>
-                                        <div>
-                                            <span class="text-[10px] font-extrabold uppercase text-slate-400 block">Email BDE</span>
-                                            <span class="font-bold text-slate-800 group-hover:text-indigo-700 transition-colors">bde.mmi@iut.fr</span>
-                                        </div>
-                                    </a>
-
-                                    <!-- Instagram -->
-                                    <a href="https://instagram.com/mmiwave" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-pink-300 hover:bg-pink-50/40 transition-all group">
-                                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-pink-500 to-orange-400 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">📸</div>
-                                        <div>
-                                            <span class="text-[10px] font-extrabold uppercase text-slate-400 block">Instagram</span>
-                                            <span class="font-bold text-slate-800 group-hover:text-pink-600 transition-colors">@mmiwave</span>
-                                        </div>
-                                    </a>
-
-                                    <!-- Numéro d'urgence -->
-                                    <a href="tel:+33600000000" class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-emerald-300 hover:bg-emerald-50/40 transition-all group">
-                                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-400 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">📱</div>
-                                        <div>
-                                            <span class="text-[10px] font-extrabold uppercase text-slate-400 block">Urgence WEI</span>
-                                            <span class="font-bold text-slate-800 group-hover:text-emerald-700 transition-colors">06 00 00 00 00</span>
-                                        </div>
-                                    </a>
-
-                                    <!-- Lieu / Camping -->
-                                    <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-blue-300 hover:bg-blue-50/40 transition-all group">
-                                        <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-blue-500 to-sky-400 text-white flex items-center justify-center text-sm font-bold flex-shrink-0 shadow-sm group-hover:scale-105 transition-transform">📍</div>
-                                        <div>
-                                            <span class="text-[10px] font-extrabold uppercase text-slate-400 block">Lieu du WEI</span>
-                                            <span class="font-bold text-slate-800 group-hover:text-blue-700 transition-colors">Voir sur Maps</span>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 flex items-start gap-2.5 text-xs text-amber-800">
-                                    <span class="text-base flex-shrink-0">⚠️</span>
-                                    <p><strong>En cas d'urgence sur place :</strong> contacte directement l'organisateur référent via le numéro ci-dessus. Pour toute question administrative, privilégie l'email ou le fil de messages ci-dessus.</p>
-                                </div>
-                            </div>
-
                             <!-- Quick Action Buttons -->
                             <div class="flex flex-col sm:flex-row gap-3 pt-2">
                                 <button onclick="switchMainView('technical')" class="w-full sm:flex-1 py-3 px-4 rounded-xl border border-slate-300 hover:bg-slate-50 font-semibold text-xs text-slate-700 transition-colors flex items-center justify-center gap-2">
                                     <span>⚙️ Consulter le trousseau & les infos de départ</span>
                                 </button>
+                                <a id="dash-admin-link" href="/admin.html" class="hidden w-full sm:w-auto py-3 px-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs transition-colors items-center justify-center gap-2">
+                                    🛡️ Espace BDE (admin)
+                                </a>
                                 <button onclick="resetAccount()" class="py-3 px-4 rounded-xl text-slate-400 hover:text-red-500 hover:bg-red-50 font-semibold text-xs transition-colors">
                                     Déconnexion
                                 </button>
@@ -1204,7 +1156,6 @@
             <div class="flex items-center gap-4">
                 <button onclick="switchMainView('onboarding')" class="hover:text-purple-600 transition-colors">Inscription & Compte</button>
                 <button onclick="switchMainView('technical')" class="hover:text-purple-600 transition-colors">Infos Techniques</button>
-                <a href="https://instagram.com/@inter_asso" target="_blank" class="hover:text-purple-600 transition-colors">Instagram BDE</a>
             </div>
 
             <p>© 2026 WEIGO • Tous droits réservés.</p>
@@ -1280,17 +1231,12 @@
                 tab2.className = "flex items-center justify-center gap-2.5 py-2.5 px-3 rounded-xl font-bold text-xs sm:text-sm transition-all bg-gradient-to-r from-purple-600 to-pink-500 text-white shadow-sm";
                 tab2Badge.className = "w-5 h-5 rounded-full bg-white/25 text-white flex items-center justify-center text-[11px] font-extrabold";
 
-                // Check if user is already logged in
-                const saved = localStorage.getItem('weigo_user_profile');
-                if (saved) {
-                    try {
-                        const user = JSON.parse(saved);
-                        renderDashboard(user);
-                    } catch(e) {
-                        switchAuthMode('choose');
-                    }
+                // Check if user is already logged in (server session)
+                if (currentUser) {
+                    renderDashboard(currentUser);
                 } else {
                     switchAuthMode('choose');
+                    bootstrapSession();
                 }
 
                 window.scrollTo({ top: 120, behavior: 'smooth' });
@@ -1337,7 +1283,28 @@
             }
         }
 
-        // Handle Login Submission & verify against Notion database
+        function showAuthFeedback(el, kind, message) {
+            if (!el) return;
+            const styles = {
+                success: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+                error: 'bg-rose-50 text-rose-700 border border-rose-200',
+                warn: 'bg-amber-50 text-amber-800 border border-amber-200'
+            };
+            el.className = 'mb-4 p-3.5 rounded-xl text-xs font-semibold block ' + (styles[kind] || styles.warn);
+            el.textContent = message;
+        }
+
+        function onAuthSuccess(user, feedbackEl, message) {
+            currentUser = user;
+            showAuthFeedback(feedbackEl, 'success', message);
+            setTimeout(() => {
+                renderDashboard(currentUser);
+                const dash = document.getElementById('participant-dashboard');
+                dash?.scrollIntoView({ behavior: 'smooth' });
+            }, 400);
+        }
+
+        // Handle Login Submission
         async function handleLoginSubmit(event) {
             event.preventDefault();
             const usernameInput = document.getElementById('login-username');
@@ -1348,82 +1315,110 @@
             const btnSubmit = document.getElementById('btn-login-submit');
 
             const username = usernameInput.value.trim();
-            const password = passwordInput.value.trim();
+            const password = passwordInput.value;
 
             if (!username || !password) return;
 
-            // UI loading state
             btnSubmit.disabled = true;
-            btnText.textContent = "Vérification dans la table Notion...";
+            btnText.textContent = "Connexion en cours...";
             btnSpinner.classList.remove('hidden');
             feedback.classList.add('hidden');
 
             try {
-                // Endpoints to attempt in order (relative, port 3005, port 3000)
-                const endpoints = [
-                    '/api/login',
-                    'http://localhost:3005/api/login',
-                    'http://localhost:3000/api/login'
-                ];
+                const { res, data } = await api('/api/auth/login', {
+                    method: 'POST',
+                    body: { username, password }
+                });
 
-                let response = null;
-                let lastError = null;
-
-                for (const url of endpoints) {
-                    try {
-                        const res = await fetch(url, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ username, password })
-                        });
-                        if (res.status !== 404) {
-                            response = res;
-                            break;
-                        }
-                    } catch (e) {
-                        lastError = e;
-                    }
-                }
-
-                if (!response) {
-                    throw lastError || new Error("Serveur non joignable");
-                }
-
-                const result = await response.json();
-
-                if (response.ok && result.success) {
-
-                    feedback.className = "mb-4 p-3.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 block";
-                    feedback.textContent = `✓ Connexion réussie ! Bienvenue ${result.user.username}. Chargement de ton espace...`;
-
-                    const profile = {
-                        username: result.user.username,
-                        prenom: result.user.participant?.prenom || result.user.username,
-                        nom: result.user.participant?.nom || "",
-                        promo: "Participant WEI",
-                        ticketId: result.user.ticketId || ('WEIGO-' + Math.floor(100000 + Math.random() * 900000)),
-                        participant: result.user.participant,
-                        comments: result.user.comments || []
-                    };
-
-                    localStorage.setItem('weigo_user_profile', JSON.stringify(profile));
-
-                    setTimeout(() => {
-                        renderDashboard(profile);
-                        const dash = document.getElementById('participant-dashboard');
-                        dash.scrollIntoView({ behavior: 'smooth' });
-                    }, 500);
+                if (res.ok && data && data.success && data.user) {
+                    passwordInput.value = '';
+                    onAuthSuccess(data.user, feedback, `✓ Connexion réussie ! Bienvenue ${data.user.prenom || data.user.username}. Chargement de ton espace...`);
+                } else if (res.status === 429) {
+                    const retry = data?.retryAfter ? Number(data.retryAfter) : null;
+                    showAuthFeedback(feedback, 'warn', retry
+                        ? `Trop de tentatives, réessaie dans ${retry} s.`
+                        : (data?.error || 'Trop de tentatives, réessaie dans quelques minutes.'));
                 } else {
-                    feedback.className = "mb-4 p-3.5 rounded-xl text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200 block";
-                    feedback.textContent = result.error || "Identifiant ou mot de passe incorrect. Assure-toi d'avoir d'abord complété le formulaire d'inscription.";
+                    showAuthFeedback(feedback, 'error', data?.error || "Identifiant ou mot de passe incorrect.");
                 }
             } catch (err) {
                 console.error(err);
-                feedback.className = "mb-4 p-3.5 rounded-xl text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 block";
-                feedback.innerHTML = `⚠️ <strong>Serveur d'authentification non détecté.</strong><br>Pour activer la vérification en direct avec Notion, ouvre un terminal dans le dossier du projet et tape :<br><code class="inline-block mt-1 bg-amber-100/80 px-2 py-0.5 rounded font-mono text-[11px]">npm start</code>`;
+                showAuthFeedback(feedback, 'warn', "Impossible de joindre le serveur. Vérifie ta connexion et réessaie.");
             } finally {
                 btnSubmit.disabled = false;
                 btnText.textContent = "Se connecter & Valider mon Pass";
+                btnSpinner.classList.add('hidden');
+            }
+        }
+
+        // Handle Registration Submission
+        async function handleRegisterSubmit(event) {
+            event.preventDefault();
+            const feedback = document.getElementById('register-feedback');
+            const btnText = document.getElementById('btn-register-text');
+            const btnSpinner = document.getElementById('btn-register-spinner');
+            const btnSubmit = document.getElementById('btn-register-submit');
+
+            const val = (id) => (document.getElementById(id)?.value || '').trim();
+            const radio = (name) => document.querySelector(`input[name="${name}"]:checked`)?.value || '';
+
+            const username = val('reg-username');
+            const password = document.getElementById('reg-password')?.value || '';
+            const passwordConfirm = document.getElementById('reg-password-confirm')?.value || '';
+            const prenom = val('reg-prenom');
+            const nom = val('reg-nom');
+            const dateNaissance = val('reg-date-naissance');
+            const statut = radio('reg-statut');
+            const mobilhome = val('reg-mobilhome');
+            const voiture = radio('reg-voiture');
+            const covoiturage = radio('reg-covoiturage');
+
+            feedback.classList.add('hidden');
+
+            if (!/^[a-zA-Z0-9._-]{3,32}$/.test(username)) {
+                showAuthFeedback(feedback, 'error', "L’identifiant doit contenir 3 à 32 caractères (lettres, chiffres, point, tiret, underscore).");
+                return;
+            }
+            if (password.length < 8 || password.length > 128) {
+                showAuthFeedback(feedback, 'error', "Le mot de passe doit contenir entre 8 et 128 caractères.");
+                return;
+            }
+            if (password !== passwordConfirm) {
+                showAuthFeedback(feedback, 'error', "Les deux mots de passe ne correspondent pas.");
+                return;
+            }
+            if (!prenom || !nom || !dateNaissance || !statut || !voiture || !covoiturage) {
+                showAuthFeedback(feedback, 'error', "Merci de remplir tous les champs obligatoires.");
+                return;
+            }
+
+            btnSubmit.disabled = true;
+            btnText.textContent = "Création du compte...";
+            btnSpinner.classList.remove('hidden');
+
+            try {
+                const { res, data } = await api('/api/auth/register', {
+                    method: 'POST',
+                    body: { username: username.toLowerCase(), password, prenom, nom, dateNaissance, statut, mobilhome, voiture, covoiturage }
+                });
+
+                if (res.status === 201 && data && data.success && data.user) {
+                    document.getElementById('form-register')?.reset();
+                    onAuthSuccess(data.user, feedback, `✓ Compte créé ! Bienvenue ${data.user.prenom || data.user.username}. Chargement de ton espace...`);
+                } else if (res.status === 429) {
+                    const retry = data?.retryAfter ? Number(data.retryAfter) : null;
+                    showAuthFeedback(feedback, 'warn', retry
+                        ? `Trop de tentatives, réessaie dans ${retry} s.`
+                        : (data?.error || 'Trop de tentatives, réessaie dans quelques minutes.'));
+                } else {
+                    showAuthFeedback(feedback, 'error', data?.error || "Impossible de créer le compte. Vérifie les informations saisies.");
+                }
+            } catch (err) {
+                console.error(err);
+                showAuthFeedback(feedback, 'warn', "Impossible de joindre le serveur. Vérifie ta connexion et réessaie.");
+            } finally {
+                btnSubmit.disabled = false;
+                btnText.textContent = "Créer mon compte";
                 btnSpinner.classList.add('hidden');
             }
         }
@@ -1437,7 +1432,6 @@
             const mobilhomeEl = document.getElementById('dash-info-mobilhome');
             const voitureEl = document.getElementById('dash-info-voiture');
             const covoitEl = document.getElementById('dash-info-covoit');
-            const notionLink = document.getElementById('dash-notion-link');
             const validationEl = document.getElementById('dash-info-valide');
             const passBadgeEl = document.getElementById('dash-pass-badge');
             const passStatusTextEl = document.getElementById('dash-pass-status-text');
@@ -1525,11 +1519,6 @@
                     stepValSub.textContent = "En cours BDE";
                 }
             }
-
-            if (notionLink && p.notionUrl) {
-                notionLink.href = p.notionUrl;
-                notionLink.classList.remove('hidden');
-            }
         }
 
         // Render Comments Feed
@@ -1561,7 +1550,7 @@
                             <span>${escapeHtml(c.author)}</span>
                             ${isOrga ? '<span class="bg-purple-200 text-purple-800 text-[10px] px-1.5 py-0.2 rounded font-semibold uppercase">Staff</span>' : ''}
                         </div>
-                        <span class="text-[10px] text-slate-400">${escapeHtml(c.date || '')}</span>
+                        <span class="text-[10px] text-slate-400">${escapeHtml(c.date && /^\d{4}-\d{2}-\d{2}T/.test(c.date) ? formatDate(c.date) : (c.date || ''))}</span>
                     </div>
                     <p class="text-slate-600 leading-relaxed">${escapeHtml(c.text)}</p>
                 `;
@@ -1577,57 +1566,62 @@
             const input = document.getElementById('input-comment-text');
             const btn = document.getElementById('btn-send-comment');
             const text = input.value.trim();
-            if (!text) return;
+            if (!text || !currentUser) return;
 
-            const saved = localStorage.getItem('weigo_user_profile');
-            let user = saved ? JSON.parse(saved) : null;
-            const username = user?.username || 'Étudiant';
-            const author = user?.participant?.fullName || username;
-
-            const now = new Date();
-            const dateStr = now.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
-            const newComment = {
-                id: 'c-' + Date.now(),
-                author,
-                role: 'student',
-                date: dateStr,
-                text
-            };
-
-            // Optimistic UI update
-            if (!user.comments) user.comments = [];
-            user.comments.push(newComment);
-            localStorage.setItem('weigo_user_profile', JSON.stringify(user));
-            renderComments(user.comments);
-            input.value = '';
-
-            // Send to server
             btn.disabled = true;
             try {
-                const endpoints = ['/api/comments', 'http://localhost:3005/api/comments', 'http://localhost:3000/api/comments'];
-                for (const url of endpoints) {
-                    try {
-                        const res = await fetch(url, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ username, author, text, role: 'student' })
-                        });
-                        if (res.ok) {
-                            const data = await res.json();
-                            if (data.comments) {
-                                user.comments = data.comments;
-                                localStorage.setItem('weigo_user_profile', JSON.stringify(user));
-                                renderComments(user.comments);
-                            }
-                            break;
-                        }
-                    } catch (err) {}
+                const { res, data } = await api('/api/comments', { method: 'POST', body: { text } });
+                if (res.ok && data && Array.isArray(data.comments)) {
+                    currentUser.comments = data.comments;
+                    renderComments(currentUser.comments);
+                    input.value = '';
+                } else if (data?.error) {
+                    alert(data.error);
                 }
             } catch (err) {
                 console.error('Comment sending error:', err);
             } finally {
                 btn.disabled = false;
             }
+        }
+
+        // ==============================================
+        // API HELPER & SESSION STATE
+        // ==============================================
+        let currentUser = null;
+
+        async function api(path, opts = {}) {
+            const options = { credentials: 'same-origin', ...opts };
+            options.headers = { ...(opts.headers || {}) };
+            const isForm = (typeof FormData !== 'undefined') && options.body instanceof FormData;
+            if (options.body && !isForm && typeof options.body !== 'string') {
+                options.body = JSON.stringify(options.body);
+            }
+            if (options.body && !isForm && !options.headers['Content-Type']) {
+                options.headers['Content-Type'] = 'application/json';
+            }
+            const res = await fetch(path, options);
+            let data = null;
+            try { data = await res.json(); } catch (e) { data = null; }
+            const isAuthRoute = path.startsWith('/api/auth/');
+            if (res.status === 401 && !isAuthRoute) {
+                handleUnauthenticated();
+            }
+            return { res, data };
+        }
+
+        function handleUnauthenticated() {
+            currentUser = null;
+            const dash = document.getElementById('participant-dashboard');
+            if (dash) dash.classList.add('hidden');
+            document.querySelector('#step-content-2 .max-w-md')?.classList.remove('hidden');
+            const adminLink = document.getElementById('dash-admin-link');
+            if (adminLink) adminLink.classList.add('hidden');
+            const navLabel = document.getElementById('nav-account-label');
+            if (navLabel) navLabel.textContent = 'Mon Compte';
+            const tabTitle = document.getElementById('step-tab-2-title');
+            if (tabTitle) tabTitle.textContent = '2. Mon Compte';
+            if (currentStep === 2) switchAuthMode('choose');
         }
 
         function escapeHtml(str) {
@@ -1731,7 +1725,7 @@
                     icon: "📄",
                     isDone: hasDec,
                     isMandatory: true,
-                    doneNote: participant?.hasDecharge ? "Synchronisée via Notion" : (docs.find(d => d.type === 'decharge')?.name || "Fichier transmis")
+                    doneNote: participant?.hasDecharge ? "Décharge enregistrée" : (docs.find(d => d.type === 'decharge')?.name || "Fichier transmis")
                 }
             ];
 
@@ -1810,18 +1804,16 @@
                                         <span>•</span>
                                         <span>${escapeHtml(doc.size || '')}</span>
                                         <span>•</span>
-                                        <span>${escapeHtml(doc.date || '')}</span>
+                                        <span>${escapeHtml(formatDate(doc.date))}</span>
                                         ${doc.note ? `<span>• <em class="text-slate-600 font-sans">« ${escapeHtml(doc.note)} »</em></span>` : ''}
                                     </div>
                                 </div>
                             </div>
                             <div class="flex items-center gap-2 flex-shrink-0">
-                                ${doc.fileData ? `
-                                    <button type="button" onclick="viewDocument('${doc.id}')" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-purple-100 text-slate-700 hover:text-purple-700 font-bold text-xs transition-colors shadow-sm" title="Visualiser le fichier">
-                                        👁️ Voir
-                                    </button>
-                                ` : ''}
-                                <button type="button" onclick="handleDocumentDelete('${doc.id}')" class="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-500 transition-colors" title="Supprimer ce document">
+                                <button type="button" onclick="viewDocument('${escapeHtml(doc.id)}')" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-purple-100 text-slate-700 hover:text-purple-700 font-bold text-xs transition-colors shadow-sm" title="Visualiser le fichier">
+                                    👁️ Voir
+                                </button>
+                                <button type="button" onclick="handleDocumentDelete('${escapeHtml(doc.id)}')" class="p-1.5 rounded-lg hover:bg-red-50 text-slate-400 hover:text-red-500 transition-colors" title="Supprimer ce document">
                                     🗑️
                                 </button>
                             </div>
@@ -1846,58 +1838,21 @@
         }
 
         function viewDocument(docId) {
-            const saved = localStorage.getItem('weigo_user_profile');
-            if (!saved) return;
-            const user = JSON.parse(saved);
-            const doc = (user.documents || []).find(d => d.id === docId);
-            if (!doc || !doc.fileData) {
-                alert("Aperçu non disponible pour ce document.");
-                return;
-            }
-
-            const win = window.open();
-            if (win) {
-                win.document.write(`
-                    <!DOCTYPE html>
-                    <html>
-                    <head><title>${escapeHtml(doc.name)}</title></head>
-                    <body style="margin:0;display:flex;flex-direction:column;align-items:center;background:#0f172a;min-height:100vh;font-family:system-ui,-apple-system,sans-serif;color:white;">
-                        <div style="padding:15px 25px;background:#1e293b;width:100%;box-sizing:border-box;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,0.3);">
-                            <div style="display:flex;align-items:center;gap:10px;">
-                                <span style="font-size:20px;">📄</span>
-                                <div>
-                                    <strong style="display:block;font-size:14px;">${escapeHtml(doc.label)}</strong>
-                                    <span style="font-size:12px;color:#94a3b8;">${escapeHtml(doc.name)} • ${escapeHtml(doc.size || '')}</span>
-                                </div>
-                            </div>
-                            <a href="${doc.fileData}" download="${escapeHtml(doc.name)}" style="color:white;text-decoration:none;font-weight:bold;font-size:13px;padding:8px 16px;background:linear-gradient(to right, #9333ea, #db2777);border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.2);">Télécharger 📥</a>
-                        </div>
-                        <div style="flex-grow:1;display:flex;align-items:center;justify-content:center;width:100%;padding:20px;box-sizing:border-box;">
-                            ${doc.fileData.startsWith('data:image/') 
-                                ? `<img src="${doc.fileData}" style="max-width:90%;max-height:85vh;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);" />`
-                                : `<iframe src="${doc.fileData}" style="width:90vw;height:85vh;border:none;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.5);background:white;"></iframe>`
-                            }
-                        </div>
-                    </body>
-                    </html>
-                `);
-            }
+            window.open('/api/documents/' + encodeURIComponent(docId), '_blank', 'noopener');
         }
 
         // ==============================================
         // COVOITURAGE
         // ==============================================
         async function loadCovoit(user) {
-            const username = user?.username;
             const p = user?.participant;
-            if (!username) return;
+            if (!user) return;
             renderCovoitSection(p, null); // render with participant info first
 
             try {
-                const res = await fetch(`/api/covoit?user=${encodeURIComponent(username)}`);
-                if (res.ok) {
-                    const data = await res.json();
-                    renderCovoitSection(p, data.covoit);
+                const { res, data } = await api('/api/covoit');
+                if (res.ok && data) {
+                    renderCovoitSection(p, data.covoit || null);
                 }
             } catch (e) {
                 renderCovoitSection(p, null);
@@ -1931,7 +1886,7 @@
                             </div>
                             <p class="text-slate-700 font-semibold">🪑 Places disponibles pour les passagers : <strong>${escapeHtml(String(savedCovoit.placesDispos || '?'))}</strong></p>
                             ${savedCovoit.note ? `<p class="text-slate-500 italic">📝 ${escapeHtml(savedCovoit.note)}</p>` : ''}
-                            <p class="text-[10px] text-slate-400">Enregistré le ${escapeHtml(savedCovoit.submittedAt || '')}</p>
+                            <p class="text-[10px] text-slate-400">Enregistré le ${escapeHtml(formatDate(savedCovoit.submittedAt || savedCovoit.updatedAt))}</p>
                         </div>
                         <div id="covoit-form-edit" class="hidden space-y-3 pt-1">${buildCovoitDriverForm(savedCovoit)}</div>
                     `;
@@ -2046,10 +2001,8 @@
 
         async function handleCovoitSave(event) {
             event.preventDefault();
-            const saved = localStorage.getItem('weigo_user_profile');
-            const user = saved ? JSON.parse(saved) : null;
-            const username = user?.username;
-            if (!username) return;
+            const user = currentUser;
+            if (!user) return;
 
             const placesDispos = document.getElementById('input-covoit-places')?.value;
             const note = document.getElementById('input-covoit-note')?.value.trim();
@@ -2073,20 +2026,22 @@
             if (btnText) btnText.textContent = 'Enregistrement...';
 
             try {
-                const res = await fetch('/api/covoit', {
+                const { res, data } = await api('/api/covoit', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, role: 'conducteur', placesDispos, note })
+                    body: { role: 'conducteur', placesDispos: Number(placesDispos), note }
                 });
-                if (res.ok) {
-                    const data = await res.json();
-                    renderCovoitSection(user.participant, data.covoit);
+                if (res.ok && data) {
+                    renderCovoitSection(user.participant, data.covoit || null);
                     if (feedback) {
                         feedback.className = 'p-3 rounded-xl text-xs font-semibold bg-emerald-50 border border-emerald-200 text-emerald-800';
                         feedback.textContent = '✓ Tes places de covoiturage ont bien été enregistrées !';
                         feedback.classList.remove('hidden');
                         setTimeout(() => feedback.classList.add('hidden'), 3000);
                     }
+                } else if (feedback) {
+                    feedback.className = 'p-3 rounded-xl text-xs font-semibold bg-red-50 border border-red-200 text-red-700';
+                    feedback.textContent = '❌ ' + (data?.error || 'Enregistrement impossible. Réessaie dans un instant.');
+                    feedback.classList.remove('hidden');
                 }
             } catch (e) {
                 if (feedback) {
@@ -2104,14 +2059,11 @@
         // ==============================================
         // MOBILHÔME — PRÉFÉRENCES DE GROUPE
         // ==============================================
-        async function loadMobilhomePrefs(username) {
+        async function loadMobilhomePrefs() {
             try {
-                const res = await fetch(`/api/mobilhome?user=${encodeURIComponent(username)}`);
-                if (res.ok) {
-                    const data = await res.json();
-                    if (data.prefs) {
-                        renderMobilhomePrefs(data.prefs);
-                    }
+                const { res, data } = await api('/api/mobilhome');
+                if (res.ok && data && data.prefs) {
+                    renderMobilhomePrefs(data.prefs);
                 }
             } catch (e) {}
         }
@@ -2128,7 +2080,7 @@
                     savedDisplay.classList.remove('hidden');
                     document.getElementById('mobilhome-saved-membres').textContent = '🏕️ Groupe souhaité : ' + prefs.membres;
                     document.getElementById('mobilhome-saved-note').textContent = prefs.note ? '📝 ' + prefs.note : '';
-                    document.getElementById('mobilhome-saved-date').textContent = prefs.submittedAt ? 'Enregistré le ' + prefs.submittedAt : '';
+                    document.getElementById('mobilhome-saved-date').textContent = (prefs.submittedAt || prefs.updatedAt) ? 'Enregistré le ' + formatDate(prefs.submittedAt || prefs.updatedAt) : '';
                 }
                 if (badge) {
                     badge.textContent = '✓ Groupe renseigné';
@@ -2151,10 +2103,7 @@
 
         async function handleMobilhomeSave(event) {
             event.preventDefault();
-            const saved = localStorage.getItem('weigo_user_profile');
-            const user = saved ? JSON.parse(saved) : null;
-            const username = user?.username;
-            if (!username) return;
+            if (!currentUser) return;
 
             const membres = document.getElementById('input-mobilhome-membres')?.value.trim();
             const note = document.getElementById('input-mobilhome-note')?.value.trim();
@@ -2178,13 +2127,11 @@
             if (btnText) btnText.textContent = 'Enregistrement...';
 
             try {
-                const res = await fetch('/api/mobilhome', {
+                const { res, data } = await api('/api/mobilhome', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, membres, note })
+                    body: { membres, note }
                 });
-                if (res.ok) {
-                    const data = await res.json();
+                if (res.ok && data) {
                     renderMobilhomePrefs(data.prefs);
                     if (feedback) {
                         feedback.className = 'p-3 rounded-xl text-xs font-semibold bg-emerald-50 border border-emerald-200 text-emerald-800';
@@ -2192,6 +2139,10 @@
                         feedback.classList.remove('hidden');
                         setTimeout(() => feedback.classList.add('hidden'), 3000);
                     }
+                } else if (feedback) {
+                    feedback.className = 'p-3 rounded-xl text-xs font-semibold bg-red-50 border border-red-200 text-red-700';
+                    feedback.textContent = '❌ ' + (data?.error || 'Enregistrement impossible. Réessaie dans un instant.');
+                    feedback.classList.remove('hidden');
                 }
             } catch (e) {
                 if (feedback) {
@@ -2222,22 +2173,17 @@
                 return;
             }
 
-            if (file.size > 5 * 1024 * 1024) {
-                alert("Le fichier dépasse 5 Mo.");
+            if (file.size > 4 * 1024 * 1024) {
+                alert("Le fichier dépasse 4 Mo.");
                 return;
             }
 
-            const saved = localStorage.getItem('weigo_user_profile');
-            if (!saved) {
+            if (!currentUser) {
                 alert("Veuillez vous connecter pour déposer un document.");
                 return;
             }
-            const user = JSON.parse(saved);
-            const username = user.username;
 
-            const docType = select.value;
-            const docDef = DOC_DEFINITIONS[docType] || DOC_DEFINITIONS.autre;
-            const docLabel = docDef.title;
+            const docType = DOC_DEFINITIONS[select.value] ? select.value : 'autre';
             const note = noteInput.value.trim();
 
             btnSubmit.disabled = true;
@@ -2246,88 +2192,42 @@
             if (feedback) feedback.classList.add('hidden');
 
             try {
-                // Read file as Base64 data URL
-                const fileData = await new Promise((resolve, reject) => {
-                    const reader = new FileReader();
-                    reader.onload = () => resolve(reader.result);
-                    reader.onerror = reject;
-                    reader.readAsDataURL(file);
-                });
+                const formData = new FormData();
+                formData.append('type', docType);
+                formData.append('note', note);
+                formData.append('file', file, file.name);
 
-                const sizeStr = file.size > 1024 * 1024 
-                    ? (file.size / (1024 * 1024)).toFixed(1) + ' Mo' 
-                    : Math.round(file.size / 1024) + ' Ko';
+                const { res, data } = await api('/api/documents', { method: 'POST', body: formData });
 
-                const payload = {
-                    username,
-                    name: file.name,
-                    type: docType,
-                    label: docLabel,
-                    size: sizeStr,
-                    fileData,
-                    note
-                };
+                if (res.ok && data && data.success) {
+                    currentUser.documents = Array.isArray(data.documents) ? data.documents : (currentUser.documents || []);
+                    renderDocuments(currentUser.documents, currentUser.participant);
 
-                const endpoints = ['/api/documents', 'http://localhost:3005/api/documents'];
-                let result = null;
-                for (const url of endpoints) {
+                    fileInput.value = '';
+                    noteInput.value = '';
+
+                    if (feedback) {
+                        feedback.className = "p-3 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 block";
+                        feedback.innerHTML = `✓ Le document <strong>${escapeHtml(file.name)}</strong> a été ajouté avec succès à ton dossier !`;
+                        setTimeout(() => feedback.classList.add('hidden'), 5000);
+                    }
+
+                    // Refresh the comments feed (server adds a "document ajouté" notice)
                     try {
-                        const res = await fetch(url, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-                        if (res.ok) {
-                            result = await res.json();
-                            break;
+                        const c = await api('/api/comments');
+                        if (c.res.ok && c.data && Array.isArray(c.data.comments)) {
+                            currentUser.comments = c.data.comments;
+                            renderComments(currentUser.comments);
                         }
                     } catch (e) {}
-                }
-
-                if (result && result.success) {
-                    user.documents = result.documents;
                 } else {
-                    const newDoc = {
-                        id: 'doc-' + Date.now(),
-                        name: file.name,
-                        type: docType,
-                        label: docLabel,
-                        size: sizeStr,
-                        date: 'À l\'instant',
-                        status: 'reçu',
-                        fileData,
-                        note
-                    };
-                    if (!user.documents) user.documents = [];
-                    user.documents.unshift(newDoc);
-                }
-
-                localStorage.setItem('weigo_user_profile', JSON.stringify(user));
-                renderDocuments(user.documents, user.participant);
-
-                // Reset form
-                fileInput.value = '';
-                noteInput.value = '';
-
-                if (feedback) {
-                    feedback.className = "p-3 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 block";
-                    feedback.innerHTML = `✓ Le document <strong>${escapeHtml(file.name)}</strong> a été ajouté avec succès à ton dossier !`;
-                    setTimeout(() => feedback.classList.add('hidden'), 5000);
-                }
-
-                // Add notice to comments feed
-                if (user.comments) {
-                    const now = new Date();
-                    const dateStr = now.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' });
-                    user.comments.push({
-                        id: 'c-' + Date.now(),
-                        author: user.participant?.fullName || username,
-                        role: 'student',
-                        date: dateStr,
-                        text: `📎 Document ajouté au dossier : ${docLabel} (${file.name})`
-                    });
-                    localStorage.setItem('weigo_user_profile', JSON.stringify(user));
-                    renderComments(user.comments);
+                    const msg = data?.error || (res.status === 413 ? "Le fichier est trop volumineux (4 Mo max)." : res.status === 415 ? "Format non accepté (PDF, JPEG ou PNG uniquement)." : "Une erreur est survenue lors de l'envoi du document.");
+                    if (feedback) {
+                        feedback.className = "p-3 rounded-xl text-xs font-bold bg-rose-100 text-rose-800 border border-rose-300 block";
+                        feedback.textContent = '❌ ' + msg;
+                    } else {
+                        alert(msg);
+                    }
                 }
             } catch (err) {
                 console.error('Error uploading doc:', err);
@@ -2341,57 +2241,41 @@
 
         async function handleDocumentDelete(docId) {
             if (!confirm("Es-tu sûr(e) de vouloir retirer ce document du dossier ?")) return;
-            const saved = localStorage.getItem('weigo_user_profile');
-            if (!saved) return;
-            const user = JSON.parse(saved);
-            const username = user.username;
-
-            user.documents = (user.documents || []).filter(d => d.id !== docId);
-            localStorage.setItem('weigo_user_profile', JSON.stringify(user));
-            renderDocuments(user.documents, user.participant);
+            if (!currentUser) return;
 
             try {
-                const endpoints = ['/api/documents', 'http://localhost:3005/api/documents'];
-                for (const url of endpoints) {
-                    try {
-                        const res = await fetch(url, {
-                            method: 'DELETE',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ username, documentId: docId })
-                        });
-                        if (res.ok) break;
-                    } catch (e) {}
+                const { res, data } = await api('/api/documents?id=' + encodeURIComponent(docId), { method: 'DELETE' });
+                if (!res.ok && data?.error) {
+                    alert(data.error);
                 }
-            } catch (err) {}
+            } catch (err) {
+                console.error('Error deleting doc:', err);
+            }
+            await refreshDocuments();
         }
 
-        async function refreshDocuments(username) {
-            if (!username) return;
+        async function refreshDocuments() {
+            if (!currentUser) return;
             try {
-                const endpoints = [`/api/documents?user=${encodeURIComponent(username)}`, `http://localhost:3005/api/documents?user=${encodeURIComponent(username)}`];
-                for (const url of endpoints) {
-                    try {
-                        const res = await fetch(url);
-                        if (res.ok) {
-                            const data = await res.json();
-                            if (data.documents) {
-                                const saved = localStorage.getItem('weigo_user_profile');
-                                if (saved) {
-                                    const user = JSON.parse(saved);
-                                    user.documents = data.documents;
-                                    localStorage.setItem('weigo_user_profile', JSON.stringify(user));
-                                    renderDocuments(user.documents, user.participant);
-                                }
-                            }
-                            break;
-                        }
-                    } catch (e) {}
+                const { res, data } = await api('/api/documents');
+                if (res.ok && data && Array.isArray(data.documents)) {
+                    currentUser.documents = data.documents;
+                    renderDocuments(currentUser.documents, currentUser.participant);
                 }
             } catch (e) {}
         }
 
+        function formatDate(value) {
+            if (!value) return '';
+            const d = new Date(value);
+            if (isNaN(d.getTime())) return String(value);
+            return d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        }
+
         // Render Participant Dashboard
         function renderDashboard(user) {
+            if (!user) return;
+            currentUser = user;
             const dash = document.getElementById('participant-dashboard');
             dash.classList.remove('hidden');
 
@@ -2405,42 +2289,75 @@
             const displayName = user.participant?.fullName || `${user.prenom || ''} ${user.nom || ''}`.trim() || user.username;
             document.getElementById('dash-user-name').textContent = displayName;
             document.getElementById('dash-user-promo').textContent = `${user.promo || 'Participant'} • Promo 2026`;
-            document.getElementById('dash-ticket-id').textContent = user.ticketId;
+            document.getElementById('dash-ticket-id').textContent = user.ticketId || '—';
             document.getElementById('nav-account-label').textContent = 'Mon Espace';
             document.getElementById('step-tab-2-title').textContent = '2. Espace Personnel';
+
+            const adminLink = document.getElementById('dash-admin-link');
+            if (adminLink) {
+                if (user.role === 'admin') {
+                    adminLink.classList.remove('hidden');
+                    adminLink.classList.add('inline-flex');
+                } else {
+                    adminLink.classList.add('hidden');
+                    adminLink.classList.remove('inline-flex');
+                }
+            }
 
             // Render questionnaire details, documents and comments
             renderParticipantInfo(user.participant);
             renderDocuments(user.documents || [], user.participant);
             renderComments(user.comments || []);
-            refreshDocuments(user.username);
-            loadMobilhomePrefs(user.username);
+            refreshDocuments();
+            loadMobilhomePrefs();
             loadCovoit(user);
         }
 
         // Disconnect / Reset
-        function resetAccount() {
-            localStorage.removeItem('weigo_user_profile');
+        async function resetAccount() {
+            try {
+                await api('/api/auth/logout', { method: 'POST' });
+            } catch (e) {}
+            currentUser = null;
             document.getElementById('participant-dashboard').classList.add('hidden');
             document.querySelector('#step-content-2 .max-w-md')?.classList.remove('hidden');
+            const adminLink = document.getElementById('dash-admin-link');
+            if (adminLink) adminLink.classList.add('hidden');
             switchAuthMode('choose');
             document.getElementById('nav-account-label').textContent = 'Mon Compte';
             document.getElementById('step-tab-2-title').textContent = '2. Mon Compte';
             goToStep(2);
         }
 
-
-        // Check stored profile on load
-        window.addEventListener('DOMContentLoaded', () => {
-            const saved = localStorage.getItem('weigo_user_profile');
-            if (saved) {
+        // Load the current session from the server
+        let bootstrapPromise = null;
+        function bootstrapSession() {
+            if (bootstrapPromise) return bootstrapPromise;
+            bootstrapPromise = (async () => {
                 try {
-                    const user = JSON.parse(saved);
-                    renderDashboard(user);
+                    const res = await fetch('/api/me', { credentials: 'same-origin' });
+                    if (res.ok) {
+                        const data = await res.json().catch(() => null);
+                        if (data && data.user) {
+                            currentUser = data.user;
+                            renderDashboard(currentUser);
+                            return true;
+                        }
+                    }
                 } catch (e) {
                     console.error(e);
                 }
-            }
+                currentUser = null;
+                if (currentStep === 2) switchAuthMode('choose');
+                return false;
+            })();
+            bootstrapPromise.finally(() => { bootstrapPromise = null; });
+            return bootstrapPromise;
+        }
+
+        // Check server session on load
+        window.addEventListener('DOMContentLoaded', () => {
+            bootstrapSession();
         });
     </script>
 </body>
